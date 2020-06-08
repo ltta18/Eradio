@@ -1,0 +1,84 @@
+.hidden{
+  visibility: hidden;
+}
+
+.show-none {
+  display: none !important;
+}
+
+.show-flex {
+  visibility: visible;
+  display: flex;
+}
+
+.show-grid {
+  display: grid !important;
+}
+
+.show {
+  display: block !important;
+  width: 100%;
+}
+
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.remove-underline {
+  text-decoration: none;
+  outline: none;
+}
+
+.no-blackout {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.black-big-text {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 36px;
+  line-height: 46px;
+  letter-spacing: 0.05em;
+  color: #000000;
+}
+
+.grey-18-normal-text {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  align-items: center;
+  
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.body-container {
+  padding-right: 10%;
+  padding-left: 10%;
+  border-top: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.loading-page {
+  margin: 10% auto 0 auto;
+  text-align: center;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+
+  color: #03314B;
+}

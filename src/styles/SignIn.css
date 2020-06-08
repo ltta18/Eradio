@@ -1,0 +1,205 @@
+/* Responsive */
+@media only screen and (max-width:650px) {
+  .signin-signup-frame-container {
+    width: 80vw !important;
+    height: 32rem !important;
+    left: calc(50% - 80vw/2) !important;
+  }
+
+  .signin-signup-frame-button {
+    height: 3rem !important;
+  }
+}
+
+/* Background */
+.signin-signup-container {
+  background: url('../img/signin_bg.svg') repeat;
+  /* position: absolute; */
+  width:  100%;
+  height: 900px;
+  
+}
+
+.signin-signup-frame-container {
+  position: fixed;
+  left: calc(50% - 400px/2);
+  top: calc(50% - 500px/2);
+  width: 400px;
+  height: 500px;
+
+  background: #FFFFFF;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  box-shadow: 0px 5px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+  }
+
+/* Sign in Sign up frame */
+.signin-signup-frame {
+  margin: 5% 10%;
+}
+
+.signin-signup-frame-header {
+  margin: 0 100px 0 100px;
+}
+
+
+/* User info */
+.signin-signup-frame-account {
+  width: 100%;
+  height: 50px;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 15px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+
+  color: rgba(0, 0, 0, 0.3);
+
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+  }
+
+#error {
+  position: fixed;
+  left: calc(50% - 310px/2);
+  top: calc(50% - 20px/2);
+  width: auto;
+  height: auto;
+  color: #cc0000;
+}
+
+.signin-signup-frame-account-input {
+  border: none;
+  margin: 10px 10px;
+  
+}
+
+
+/* Checkbox */
+.signin-signup-frame-checkbox {
+  display: flex;
+  margin: 13% 0 0 0;
+}
+
+.signin-signup-frame-checkbox .checkbox {
+  /* <-- Hide the default checkbox. The rest is to hide and allow tabbing, which display:none prevents */
+  height: 0;
+  width: 0;
+  display: none;
+  overflow: hidden;
+}
+
+.signin-signup-frame-checkbox .signin-signup-frame-new-checkbox {
+  /* <-- Style the artificial checkbox */
+  content: '\2714';
+  width: 25px;
+  height: 25px;
+  margin-right: 10px;
+
+  
+  border: 1.5px solid rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  border-radius: 5px;
+  position: relative;
+  display: inline-block;
+}
+
+[type=checkbox]:checked + .signin-signup-frame-new-checkbox {
+  /* <-- Style its checked state */
+  width: 25px;
+  height: 25px;
+  background: #F58732;
+}
+
+[type=checkbox]:checked + .signin-signup-frame-new-checkbox:before {
+  /* Style its checked state...with a ticked icon */
+  content: '\2714';
+  margin-left: 5px;
+  color: white;
+}
+
+.signin-signup-frame-checkbox .checkbox-text{
+  margin: auto 0;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  align-items: center;
+  letter-spacing: 0.05em;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Submit button */
+.signin-signup-frame-button {
+  background: #F58732;
+  border: 1.5px solid rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  width: 100%;
+  height: 50px;
+
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin: 10% 0 0 0;
+
+  color: #FFFFFF;
+}
+
+.signin-signup-button {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.1em;
+  margin: auto auto;
+}
+
+
+/* Ask for sign up */
+.signin-signup-ask {
+  display: block !important;
+  margin-top: 10%;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.05em;
+}
+
+.account-ask {
+  color: rgba(0, 0, 0, 0.5);
+  margin: auto auto;
+}
+
+.todo-ask {
+  color: #F58732;
+  margin: auto auto;
+}
+
+.margin-reduced {
+  margin-top: 2% !important;
+}
+
+#verify-message {
+  align-items: center;
+  text-align: center;
+  
+  margin: 10% auto 15% auto;
+}

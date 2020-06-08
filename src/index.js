@@ -1,13 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
+import store from './api/store';
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import './styles/HomePage.css';
+import './styles/SignIn.css';
+import './styles/Common.css';
+import './styles/MarketingSales.css';
+import './styles/Me.css';
+import '../node_modules/green-audio-player/dist/css/green-audio-player.min.css'
 
 ReactDOM.render(
-  <React.StrictMode>
+  <Provider store={store}>
+    <React.StrictMode>
     <App />
-  </React.StrictMode>,
+  </React.StrictMode></Provider>
+  ,
   document.getElementById('root')
 );
 
