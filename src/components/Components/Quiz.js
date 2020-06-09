@@ -65,7 +65,6 @@ class BookZoom extends React.Component {
     var chapter_list_container =document.getElementById('chapter-list-container');
     if (chapter_list.classList.contains('show-none')) {
       chapter_list.classList.remove('show-none');
-      // chapter_list.style.position = 'absolute';
       filter.classList.remove('show-none');
       filter.style.position = 'absolute';
       outside_chapter_list.classList.add('book-zoom-body-left-open');
@@ -169,33 +168,6 @@ class BookZoom extends React.Component {
                   return <div className="book-chapter-text-paragraph">{paragraph}</div>
                 })}
               </div>
-              <div id="chapter-control-button" className="show-flex">
-                {chapterData.chapter.id !== String(0)
-                ? <div id="back-button" className="show-flex" onClick={this.handleBackButton}>
-                    <div id="back-button-icon"></div>Chương trước
-                  </div>
-                : ''}
-
-                {chapterData.chapter.id !== String(parseInt(book.directory.length)-1)
-                ? <div id="next-button" className="show-flex" onClick={this.handleNextButton}>
-                    Chương sau<div id="next-button-icon"></div>
-                  </div> 
-                : ''} 
-              </div>
-            </div>
-          </div>
-
-          <div id="chapter-progress-bar">
-            <div id="chapter-progress-finished"></div>
-          </div>
-          <div id="bottom-bar" className="show-flex">
-            <div id="chapter-progress-text">
-              {'Chương '+ String(parseInt(chapterData.chapter.id)+1) + '/' + book.directory.length}
-            </div>
-            <div className="audio-bar">
-              <audio crossorigin>
-                <source src={chapterData.chapter.audio} type="audio/mpeg" autoPlay></source>
-              </audio>
             </div>
           </div>
         </div>

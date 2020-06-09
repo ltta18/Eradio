@@ -2,7 +2,7 @@ import React from 'react';
 import ProgressBar from './ProgressBar';
 import ListBook from './ListBook';
 import { connect } from 'react-redux';
-import { fetchGetLibrary } from '../../../api/Action/Categories/LibraryAction';
+import { fetchGetLibrary } from '../../api/Action/Categories/LibraryAction';
 
 const default_state = {
   library: {

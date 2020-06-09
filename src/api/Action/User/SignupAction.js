@@ -28,7 +28,7 @@ const fetchSignUpRequest = () => {
 export const fetchSignUp = (email, password) => async (dispatch) => {
   dispatch(fetchSignUpRequest())
   try {
-    const response = await axios.post('https://eradio36.ngrok.io/auth/signup', {
+    const response = await axios.post('http://10.2.50.232:1209/auth/signup', {
       email: email,
       password: password
     })

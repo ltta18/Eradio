@@ -1,8 +1,8 @@
 import React from 'react';
 import Book from './Book';
 import { connect } from 'react-redux';
-import { fetchGetLibrary } from '../../../api/Action/Categories/LibraryAction';
-import Loading from '../../Common/Loading';
+import { fetchGetLibrary } from '../../api/Action/Categories/LibraryAction';
+import Loading from '../Common/Loading';
 
 class ListBook extends React.Component {
   render() {

@@ -29,7 +29,7 @@ const fetchGetUserDetailRequest = () => {
 export const fetchGetUserDetail = (token) => async (dispatch) => {
   dispatch(fetchGetUserDetailRequest())
   try {
-    const response = await axios.get('https://eradio36.ngrok.io/auth/detail', {
+    const response = await axios.get('http://10.2.50.232:1209/auth/detail', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

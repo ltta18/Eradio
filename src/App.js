@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 import './App.css';
 
-import BookZoom from './components/HomePage/Components/BookZoom';
+import BookZoom from './components/Components/BookZoom';
 import Page from './components/Page';
 import SignIn from './components/SignIn_SignUp/SignIn';
 import SignUp from './components/SignIn_SignUp/SignUp';

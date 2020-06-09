@@ -49,7 +49,7 @@ const fetchLogOutFailure = (error) => {
 export const fetchSignIn = (email, password) => async (dispatch) => {
   dispatch(fetchSignInRequest())
   try {
-    const response = await axios.post('https://eradio36.ngrok.io/auth/login', {
+    const response = await axios.post('http://10.2.50.232:1209/auth/login', {
       email: email,
       password: password
     })
@@ -79,7 +79,7 @@ export const fetchLogOut = (token) => async(dispatch) => {
   try {
     const response = axios({
       method: 'POST',
-      url: 'https://eradio36.ngrok.io/auth/logout',
+      url: 'http://10.2.50.232:1209/auth/logout',
       headers: {
         Authorization: `Bearer ${token}`
       },

@@ -2,9 +2,9 @@ import React from 'react';
 import history from '../history';
 import Header from './Common/Header';
 import ComponentsHeader from './Common/ComponentsHeader';
-import Headline from './HomePage/Categories/Headline';
-import ListCategories from './HomePage/Categories/ListCategories';
-import MarketingSales from './HomePage/Components/MarketingSales';
+import Headline from './HomePage/Headline';
+import ListCategories from './HomePage/ListCategories';
+import MarketingSales from './Components/MarketingSales';
 import Account from './Me/Account';
 import Payment from './Me/Payment';
 

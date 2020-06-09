@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchLogOut } from '../../api/Action/User/AuthAction';
 import { fetchSearch } from '../../api/Action/Categories/SearchAction';
 import history from '../../history';
-import { useLocation } from 'react-router-dom';
 
 class ComponentsHeader extends React.Component {
   state = {
