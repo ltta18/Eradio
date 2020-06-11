@@ -47,6 +47,12 @@ const routes = [
 
   {
     component: BookZoom,
+    path: '/book/:book_id/chapter/result',
+    protected: true,
+  },
+
+  {
+    component: BookZoom,
     path: '/book/:book_id/chapter/:chapter_id',
     protected: true,
   },

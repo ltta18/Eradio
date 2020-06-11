@@ -20,6 +20,10 @@
   width: 100%;
 }
 
+.text-center {
+  text-align: center;
+}
+
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
     -webkit-user-select: none; /* Safari */

@@ -6,7 +6,7 @@
     left: calc(50% - 80vw/2) !important;
   }
 
-  .signin-signup-frame-button {
+  .orange-button {
     height: 3rem !important;
   }
 }
@@ -136,7 +136,7 @@
 
 
 /* Submit button */
-.signin-signup-frame-button {
+.orange-button {
   background: #F58732;
   border: 1.5px solid rgba(0, 0, 0, 0.25);
   border-radius: 5px;

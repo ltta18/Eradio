@@ -8,7 +8,8 @@ import Loading from 'components/Common/Loading';
 import history from '../../history';
 import ChapterBar from './ChapterBar';
 import BottomBar from './BottomBar';
-import QuizContent from './Quiz';
+import QuizContent from './QuizContent';
+import ControlButtonBar from './ControlButtonBar';
 
 const quiz = [['a','b','c','d'], ['aa','bb','cc','dd']]
 
@@ -90,16 +91,6 @@ const BookZoom = (props) => {
     history.push(`./${target_id}`)
   }
 
-  const handleBackButton = () => {
-    var previous_chapter_num = String(parseInt(chapterData.chapter.id)-1);
-    history.push(`./${previous_chapter_num}`)
-  }
-
-  const handleNextButton = () => {
-    var next_chapter_num = String(parseInt(chapterData.chapter.id)+1);
-    history.push(`./${next_chapter_num}`)
-  }
-
   const handleScroll = (e) => {
     var progress_line = document.getElementById('chapter-list-progress-line');
     var scroll_position = document.getElementById('chapter-list-container').scrollTop
@@ -131,7 +122,12 @@ const BookZoom = (props) => {
 
           <div id="book-content">
             <div id="book-chapter-heading">
-              {!chapter_id  ? "Câu hỏi trắc nghiệm" : chapterData.chapter.name}
+              {location.pathname.substring(16,21) === 'quiz' 
+              ? "Câu hỏi trắc nghiệm" 
+              : location.pathname.substring(16,23) === 'result' 
+              ? "Kết quả"
+              : chapterData.chapter.name
+              }
               </div>
             <div className="book-chapter-text">
               {!chapter_id 
@@ -142,24 +138,8 @@ const BookZoom = (props) => {
               }
             </div>
 
+            <ControlButtonBar book={book} chapterData={chapterData} chapter_id={chapter_id}/>
             
-            <div id="chapter-control-button" className="show-flex">
-              {!chapter_id
-              ? <div></div>
-              : <div>{chapterData.chapter.id !== String(0)
-              ? <div id="back-button" className="show-flex" onClick={handleBackButton}>
-                  <div id="back-button-icon"></div>Chương trước
-                </div>
-              : undefined}
-
-              {chapterData.chapter.id !== String(parseInt(book.directory.length)-1)
-              ? <div id="next-button" className="show-flex" onClick={handleNextButton}>
-                  Chương sau<div id="next-button-icon"></div>
-                </div> 
-              : undefined} 
-            </div>
-            }
-            </div>
           </div>
         </div>
 

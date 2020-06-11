@@ -3,7 +3,6 @@ import { useLocation, useParams } from 'react-router-dom';
 
 const BottomBar = (props) => {
   const { chapterData, book } = props;
-  const location = useLocation();
   const params = useParams();
   const { chapter_id } = params;
 
@@ -18,7 +17,7 @@ const BottomBar = (props) => {
         </div>
         <div className="audio-bar">
           <audio crossOrigin="true">
-            <source src={chapterData.audio} type="audio/mpeg" autoPlay></source>
+            <source src={chapterData.chapter.audio} type="audio/mpeg" autoPlay></source>
           </audio>
         </div>
       </div>

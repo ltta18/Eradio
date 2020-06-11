@@ -119,10 +119,10 @@ const Frame = (props) => {
                 <input type="checkbox" id="remember" name="remember" className="checkbox"></input><span className="signin-signup-frame-new-checkbox" onClick={handleClick}></span>
                 <label htmlFor="remember" className="checkbox-text">{props.checkbox_message}</label>            
               </div>
-              <button className={"signin-signup-frame-button "+ signup_margin_reduced + verify_hide_inputs} disabled={isLoading}><span className="signin-signup-button">{props.submit_message}</span></button>
+              <button className={"orange-button "+ signup_margin_reduced + verify_hide_inputs} disabled={isLoading}><span className="signin-signup-button">{props.submit_message}</span></button>
             </form>
 
-            <a className={"signin-signup-frame-button remove-underline " + verify_message_show} href="/signin"><span className="signin-signup-button" >Quay lại trang Đăng nhập</span></a>
+            <a className={"orange-button remove-underline " + verify_message_show} href="/signin"><span className="signin-signup-button" >Quay lại trang Đăng nhập</span></a>
             <div className={"signin-signup-ask "+ signup_margin_reduced}>
               <div className="account-ask">
                 {props.account_ask}
