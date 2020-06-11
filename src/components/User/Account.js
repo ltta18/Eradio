@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchGetUserDetail } from '../../api/Action/User/UserDetailAction';
-import Loading from '../Common/Loading';
+import { fetchGetUserDetail } from 'api/Action/User/UserDetailAction';
+import Loading from 'components/Common/Loading';
 
 const default_state = {
   is_loading: true,

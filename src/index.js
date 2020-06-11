@@ -12,6 +12,7 @@ import './styles/Common.css';
 import './styles/MarketingSales.css';
 import './styles/Me.css';
 import '../node_modules/green-audio-player/dist/css/green-audio-player.min.css'
+import '../node_modules/green-audio-player/dist/js/green-audio-player.js'
 
 ReactDOM.render(
   <Provider store={store}>

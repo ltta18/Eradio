@@ -2,7 +2,6 @@ import React from 'react';
 import { Doughnut, Chart } from 'react-chartjs-2';
 
 class ProgressBar extends React.Component {
-
     componentWillMount() {
         Chart.controllers.doughnut = Chart.controllers.doughnut.extend({
             draw: function(ease) {

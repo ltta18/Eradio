@@ -19,6 +19,7 @@
   display: flex;
   /* margin-left: 10%; */
   justify-content: center;
+  cursor: pointer;
 }
 
 .header-container {
@@ -119,6 +120,7 @@
 
 .category {
   margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .category:hover .category-text, #discovery-dropdown:hover, #friend-dropdown:hover{
@@ -161,6 +163,7 @@
   width: 1.2rem;
   height: 1.2rem;
   margin: auto 0 auto 10px;
+  cursor: pointer;
   }
 
 .search-button:hover {

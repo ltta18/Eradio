@@ -146,6 +146,7 @@
 /* MarketingSales.js - Banner */
 .banner {
   width: 50%;
+  cursor: pointer;
 }
 
 .line-below-banner {
@@ -165,6 +166,7 @@
   width: 1.7rem;
   height: 1.7rem;
   margin: auto 0;
+  cursor: pointer;
 }
 
 #discovery-dropdown-icon {
@@ -172,6 +174,7 @@
   width: 1.7rem;
   height: 1.7rem;
   margin: auto 30px auto auto;
+  cursor: pointer;
 }
 
 #discovery-dropdown {
@@ -292,6 +295,7 @@
   margin: auto auto;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 }
 
 .read-button-content {
@@ -407,6 +411,7 @@
   margin-left: 0.7rem;
   margin-right: 0.7rem;
   margin-top: 65px;
+  cursor: pointer;
 }
 
 /* .chapter-icon:hover, #chapter-list-show {
@@ -419,6 +424,7 @@
   height: 2rem;
   margin-left: 0.7rem;
   margin-top: 20px;
+  cursor: pointer;
 }
 
 .chapter {
@@ -428,6 +434,7 @@
 .chapter-header {
   height: auto;
   width: 75%;
+  cursor: pointer;
 }
 
 .chapter-status-button {
@@ -439,6 +446,7 @@
   padding-bottom: 0 !important;
   border: none;
   z-index: 3;
+  cursor: pointer;
 }
 
 .completed-read-button {
@@ -498,6 +506,7 @@
   font-weight: normal;
   font-size: 1rem;
   line-height: 24px;
+  cursor: pointer;
 
   color: #F58732;
 }
@@ -515,6 +524,7 @@
   font-size: 1rem;
   line-height: 24px;
   margin-left: auto;
+  cursor: pointer;
 
   color: #F58732;
 }

@@ -74,7 +74,7 @@ export const fetchSignIn = (email, password) => async (dispatch) => {
   }
 };
 
-export const fetchLogOut = (token) => async(dispatch) => {
+export const fetchLogOut = (token) => (dispatch) => {
   dispatch(fetchLogOutRequest())
   try {
     const response = axios({
