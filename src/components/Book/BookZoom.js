@@ -122,9 +122,9 @@ const BookZoom = (props) => {
 
           <div id="book-content">
             <div id="book-chapter-heading">
-              {location.pathname.substring(16,21) === 'quiz' 
+              {location.pathname.split('/')[3] === 'quiz' 
               ? "Câu hỏi trắc nghiệm" 
-              : location.pathname.substring(16,23) === 'result' 
+              : location.pathname.split('/')[3] === 'result' 
               ? "Kết quả"
               : chapterData.chapter.name
               }

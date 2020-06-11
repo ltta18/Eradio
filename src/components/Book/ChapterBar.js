@@ -17,7 +17,7 @@ const ChapterBar = (props) => {
   }
 
   const handleGetQuiz = () => {
-    history.push('./quiz')
+    history.push(`book/question/${book.book_id}`)
     handleClickOutsideChapterList()
   }
 

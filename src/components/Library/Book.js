@@ -4,7 +4,8 @@ import history from '../../history';
 
 const Book = (props) => {
   const handleClickBook = (book_id) => {
-    history.push(`/book/${book_id}/chapter/0`);
+    var currentChapter = (Number(props.book.progress.split("/")[0])-1)
+    history.push(`/book/${book_id}/chapter/${currentChapter}`);
   }
 
   return (

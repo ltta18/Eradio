@@ -8,6 +8,10 @@ const QuizContent = (props) => {
   const location = useLocation()
 
   useEffect(() => {
+    
+  }, [])
+
+  useEffect(() => {
     localStorage.setItem('answerSet', JSON.stringify(answerSet))
   }, [answerSet])
   
@@ -34,12 +38,12 @@ const QuizContent = (props) => {
   }
 
   const getContent = () => {
-    if (location.pathname.substring(16,23) === 'result') {
+    if (location.pathname.split('/')[3] === 'result') {
       return (
         <div className="text-center">
           <div>Chúc mừng bạn đã hoàn thành phần câu hỏi trắc nghiệm.</div>
           <div>Kết quả của bạn là:</div>
-          <div></div>
+          <div>{`/5`}</div>
         </div>
       )}
     else {

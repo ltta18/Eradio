@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from './Common/Header';
 import ComponentsHeader from './Common/ComponentsHeader';
@@ -7,12 +7,26 @@ import ListCategories from './Categories/ListCategories';
 import MarketingSales from './Library/MarketingSales';
 import Account from './User/Account';
 import Payment from './User/Payment';
+import { fetchGetUserDetail } from 'api/Action/User/UserDetailAction';
+import { useDispatch } from 'react-redux';
 
 var category = [{'icon':'img/sales.svg', 'name':'Marketing & Sales'}] 
 
 const Page = (props) => {
+  const [ name, setName ] = useState('')
 
   const location = useLocation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const getName = async() => { 
+      const user = await dispatch(fetchGetUserDetail(props.token))
+      console.log(user)
+      setName(user.data.email.split('@')[0])
+    }
+
+    getName()
+  }, [])
 
   const handleClickOutsideSearch = () => {
     var search = document.getElementById('search');
@@ -40,7 +54,7 @@ const Page = (props) => {
       </div>
       {location.pathname === '/' 
       ? <div onClick={handleClickOutsideSearch}>
-        <Headline title="Xin chào, " name='Linh' />
+        <Headline title="Xin chào, " name={name} />
         <ListCategories categories={category}/></div>
       : [
       <div id="discovery-dropdown-content" className={location.pathname === '/' ? '' : 'show-none'}>
