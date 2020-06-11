@@ -1,12 +1,14 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 const BottomBar = (props) => {
   const { chapterData, book } = props;
   const location = useLocation();
+  const params = useParams();
+  const { chapter_id } = params;
 
   return (
-    <div className={location.pathname === '/quiz' ? 'show-none' : undefined}>
+    <div className={!chapter_id ? 'show-none' : undefined}>
       <div id="chapter-progress-bar">
         <div id="chapter-progress-finished"></div>
       </div>

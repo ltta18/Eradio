@@ -41,13 +41,13 @@ const routes = [
 
   {
     component: BookZoom,
-    path: '/book/:book_id/chapter/:chapter_id',
+    path: '/book/:book_id/chapter/quiz',
     protected: true,
   },
 
   {
     component: BookZoom,
-    path: '/quiz',
+    path: '/book/:book_id/chapter/:chapter_id',
     protected: true,
   },
 

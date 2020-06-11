@@ -2,22 +2,20 @@ import React from 'react';
 import history from '../../history';
 
 
-class Category extends React.Component {
+const Category = (props) => {
   
-  onClick = (e) => {
+  const onClick = (e) => {
     history.push('/components');
   }
 
-  render() {
-      return (
-        <div className="column">
-            <div className="category show-flex" onClick={this.onClick}>
-              <div className="category-icon"></div>
-              <div className="category-text show-flex">{this.props.category ? this.props.category.name : '//Category Here'}</div>
-            </div>
+  return (
+    <div className="column">
+        <div className="category show-flex" onClick={onClick}>
+          <div className="category-icon"></div>
+          <div className="category-text show-flex">{props.category ? props.category.name : '//Category Here'}</div>
         </div>
-      )
-  }
+    </div>
+  )
 }
 
 

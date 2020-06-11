@@ -2,7 +2,7 @@ import React from 'react';
 import history from '../../history';
 
 const ChapterBar = (props) => {
-  const { book, chapters, handleGetChapter } = props;
+  const { book, chapters, handleGetChapter, handleClickOutsideChapterList } = props;
 
   const getIconClass = (chapter) => {
     if (Number(chapter.id) === Number(chapters.chapter.id)) {
@@ -17,7 +17,8 @@ const ChapterBar = (props) => {
   }
 
   const handleGetQuiz = () => {
-    history.push('/quiz')
+    history.push('./quiz')
+    handleClickOutsideChapterList()
   }
 
   return (

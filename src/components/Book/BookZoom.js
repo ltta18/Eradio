@@ -8,9 +8,12 @@ import Loading from 'components/Common/Loading';
 import history from '../../history';
 import ChapterBar from './ChapterBar';
 import BottomBar from './BottomBar';
+import QuizContent from './Quiz';
+
+const quiz = [['a','b','c','d'], ['aa','bb','cc','dd']]
 
 const BookZoom = (props) => {
-  const [ book, setBook ] = useState({ directory: [] });
+  const [ book, setBook ] = useState({ directory: [], book_progress: '' });
   const [ chapterData, setChapterData ] = useState({ chapter: {text: []} });
   const [ isLoading, setIsLoading ] = useState(false);
 
@@ -32,9 +35,11 @@ const BookZoom = (props) => {
       setIsLoading(false);
     }
     
-    getBookChapter()
-    var chapter_progress = document.getElementById('chapter-progress-finished');
-    chapter_progress.style.width = String((parseInt(book.book_progress)+1)/(book.directory.length)*100)+'%';
+    if (chapter_id) {
+      getBookChapter()
+      var chapter_progress = document.getElementById('chapter-progress-finished');
+      chapter_progress.style.width = String((parseInt(book.book_progress)+1)/(book.directory.length)*100)+'%';
+    }
 
   }, [chapter_id])
 
@@ -112,7 +117,7 @@ const BookZoom = (props) => {
       :<div>
         <div id="chapter-list-show" className="show-none">
         <div id="chapter-list-container" className="show-flex" onScroll={handleScroll}>
-            <ChapterBar book={book} chapters={chapterData} handleGetChapter={handleGetChapter} />
+            <ChapterBar book={book} chapters={chapterData} handleGetChapter={handleGetChapter} handleClickOutsideChapterList={handleClickOutsideChapterList} />
             <div className="chapter-icon" onClick={handleClickChapter}></div>
           </div>
         </div>
@@ -126,17 +131,20 @@ const BookZoom = (props) => {
 
           <div id="book-content">
             <div id="book-chapter-heading">
-              {location.pathname === '/quiz' ? "Câu hỏi trắc nghiệm" : chapterData.chapter.name}
+              {!chapter_id  ? "Câu hỏi trắc nghiệm" : chapterData.chapter.name}
               </div>
             <div className="book-chapter-text">
-              {chapterData.chapter.text.map((paragraph) => {
+              {!chapter_id 
+              ? <QuizContent quiz={quiz}/> 
+              : chapterData.chapter.text.map((paragraph) => {
                 return <div className="book-chapter-text-paragraph">{paragraph}</div>
-              })}
+              })
+              }
             </div>
 
             
             <div id="chapter-control-button" className="show-flex">
-              {location.pathname === '/quiz' 
+              {!chapter_id
               ? <div></div>
               : <div>{chapterData.chapter.id !== String(0)
               ? <div id="back-button" className="show-flex" onClick={handleBackButton}>

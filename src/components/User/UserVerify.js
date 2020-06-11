@@ -1,12 +1,10 @@
 import React from 'react';
 import Frame from './Frame';
 
-class UserVerify extends React.Component {
-  render() {
-    return (
-      <Frame href="/signin" margin="margin-reduced"/>
-    )
-  }
+const UserVerify = () => {
+  return (
+    <Frame href="/signin" margin="margin-reduced"/>
+  )
 }
 
 

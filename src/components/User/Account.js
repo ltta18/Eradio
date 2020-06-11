@@ -1,5 +1,5 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { fetchGetUserDetail } from 'api/Action/User/UserDetailAction';
 import Loading from 'components/Common/Loading';
 
@@ -8,46 +8,48 @@ const default_state = {
   detail: {}
 }
 
-class Account extends React.Component {
-  state = default_state;
+const Account = (props) => {
+  const [ isLoading, setIsLoading ] = useState(true)
+  const [ detail, setDetail ] = useState({email: '', type_account: '', registered_on: '', exp: ''})
+  const dispatch = useDispatch();
 
-  componentDidMount = async() => {
-    this.setState({is_loading: true})
-    const user_detail = await this.props.fetchGetUserDetail(this.props.token);
-    if (user_detail) {
-      this.setState({detail: user_detail.data, is_loading: false});
+  useEffect (() => {
+    const getUserDetail = async() => {
+      setIsLoading(true)
+      const user_detail = await dispatch(fetchGetUserDetail(props.token));
+      if (user_detail) {
+        setDetail(user_detail.data);
+       }
+       setIsLoading(false);
     }
-  }
-
-  render() {
-    const { is_loading, detail: user_detail } = this.state;
+    getUserDetail()
+  }, [])
 
     return (
       <div id="account">
-        { is_loading ? <Loading /> :
+        { isLoading ? <Loading /> :
         [
         <div className="me-header">Tài khoản</div>,
         <div className="account-section">
           <div className="account-section-header">Thông tin tài khoản</div>
-          <div className="account-section-info">Email: {user_detail.email}</div>
+          <div className="account-section-info">Email: {detail.email}</div>
         </div>,
         <div className="account-section">
           <div className="account-section-header">Loại tài khoản</div>
-          <div className="account-section-info">{user_detail.type_account}</div>
+          <div className="account-section-info">{detail.type_account}</div>
         </div>,
         <div className="account-section">
           <div className="account-section-header">Thời gian tạo tài khoản</div>
-          <div className="account-section-info">{user_detail.registered_on}</div>
+          <div className="account-section-info">{detail.registered_on}</div>
         </div>,
         <div className="account-section">
           <div className="account-section-header">Thời hạn sử dụng</div>
-          <div className="account-section-info">{user_detail.exp}</div>
+          <div className="account-section-info">{detail.exp}</div>
         </div>
         ]
         }
       </div>
     )
-  }
 }
 
-export default connect(null, { fetchGetUserDetail })(Account);
+export default Account;
