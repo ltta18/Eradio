@@ -12,17 +12,14 @@ const Frame = (props) => {
   const [retypePassword, setRetypePassword] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState({});
 
   const location = useLocation();
   const dispatch = useDispatch();
 
   const isValid = () => {
-    const { new_errors, isValid } = validateInput({email, retypePassword, password, isLoading, errors});
-    if (!isValid) {
-      setErrors({ new_errors })
-    }
-    return isValid;
+    const pathname = location.pathname
+    const { errors, isValid } = validateInput({email, retypePassword, password}, pathname);
+    return { errors, isValid};
   }
 
   const handleChange = (e) => {
@@ -47,7 +44,7 @@ const Frame = (props) => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    var valid = isValid();
+    var {errors, isValid: valid} = isValid();
     var checkbox = document.getElementsByClassName('signin-signup-frame-new-checkbox').item(0);
     var button = document.getElementById('remember');
 
@@ -63,17 +60,17 @@ const Frame = (props) => {
 
     // if sign up
     if (props.checkbox_message !== "Nhớ tài khoản của tôi") {
-      if (errors.retype_password) {
+      if (errors.retypePassword) {
         var retype_password = document.getElementById('retype-password-container');
         retype_password.style.borderColor = '#cc0000';
       }
       if (button.checked === false) {
         checkbox.style.borderColor = '#cc0000';
+        
       }
     }
 
     if (valid) {
-      setErrors({});
       setIsLoading(true);
       if (location.pathname === '/signin') {
         await dispatch(fetchSignIn(email, password));
