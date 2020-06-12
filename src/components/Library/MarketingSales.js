@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ProgressBar from './ProgressBar';
 import ListBook from './ListBook';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetLibrary } from 'api/Action/Categories/LibraryAction';
 
 
@@ -12,11 +12,12 @@ const MarketingSales = (props) => {
   const [ isFinishedList, setIsFinishedList ] = useState(false);
 
   const dispatch = useDispatch()
+  const token = useSelector(state => state.access_token)
 
   useEffect(() => {
     const getLibrary = async() => {
       setIsLoading(true);
-      const library = await dispatch(fetchGetLibrary(props.token));
+      const library = await dispatch(fetchGetLibrary(token));
       if (!!library) {
         setLibrary(library.data.bookself.reading);
         setLibraryProgress(library.data.library_progress);
@@ -35,7 +36,7 @@ const MarketingSales = (props) => {
   useEffect(() => {
     const fetchLibraries = async () => {
       setIsLoading(true);
-      var library = await dispatch(fetchGetLibrary(props.token));
+      var library = await dispatch(fetchGetLibrary(token));
       if (!!library) {
         if (isFinishedList) {
           setLibrary(library.data.bookself.finished);
@@ -75,7 +76,7 @@ const MarketingSales = (props) => {
           <div id="category-banner" className="show-flex no-blackout">
             <div id="category-name" className="black-big-text">Marketing & Sales</div>
             <div id="progress-bar">
-              <ProgressBar progress={libraryProgress} token={props.token} isLoading={isLoading}/>
+              <ProgressBar progress={libraryProgress} token={token} isLoading={isLoading}/>
             </div>
           </div>
           <div className="grey-18-normal-text show-flex no-blackout">

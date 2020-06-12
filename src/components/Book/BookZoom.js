@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { withRouter, useParams, useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import GreenAudioPlayer from 'green-audio-player';
 import { fetchGetChapter } from 'api/Action/Book/ChapterAction'
 import { fetchGetBook } from 'api/Action/Book/BookDirectoryAction'
@@ -20,15 +20,17 @@ const BookZoom = (props) => {
 
   const params = useParams();
   const location = useLocation();
+  const token = useSelector(state => state.access_token)
   const { book_id, chapter_id } = params;
+  const pathname = location.pathname.split('/')[2]
 
   const dispatch = useDispatch();
 
   useEffect(() => {
     const getBookChapter = async () => {
       setIsLoading(true);
-      const chapter = await dispatch(fetchGetChapter(book_id, chapter_id, props.token));
-      const book = await dispatch(fetchGetBook(book_id, props.token));
+      const chapter = await dispatch(fetchGetChapter(book_id, chapter_id, token));
+      const book = await dispatch(fetchGetBook(book_id, token));
       if (!!book || !!chapter) {
         setBook(book.data);
         setChapterData(chapter.data);
@@ -75,6 +77,10 @@ const BookZoom = (props) => {
     }
   }
 
+  const handleClickHouseIcon = () => {
+    history.push('/components')
+  }
+
   const handleClickOutsideChapterList = () => {
     var chapter_list = document.getElementById('chapter-list-show');
     var filter = document.getElementById('filter');
@@ -89,7 +95,12 @@ const BookZoom = (props) => {
   const handleGetChapter = (e) => {
     const target_id = e.target.id.substring(4,5)
     history.push(`./${target_id}`)
-  }
+  };
+
+  const handleGetQuiz = () => {
+    history.push(`/book/question/${book_id}`)
+    handleClickOutsideChapterList()
+  };
 
   const handleScroll = (e) => {
     var progress_line = document.getElementById('chapter-list-progress-line');
@@ -108,7 +119,7 @@ const BookZoom = (props) => {
       :<div>
         <div id="chapter-list-show" className="show-none">
         <div id="chapter-list-container" className="show-flex" onScroll={handleScroll}>
-            <ChapterBar book={book} chapters={chapterData} handleGetChapter={handleGetChapter} handleClickOutsideChapterList={handleClickOutsideChapterList} />
+            <ChapterBar book={book} chapters={chapterData} handleGetChapter={handleGetChapter} handleGetQuiz={handleGetQuiz} />
             <div className="chapter-icon" onClick={handleClickChapter}></div>
           </div>
         </div>
@@ -117,28 +128,29 @@ const BookZoom = (props) => {
         <div id="book-zoom-body" className="show-flex" onClick={handleClickOutsideVolume}>
           <div id="book-zoom-menu-bar">
             <div className="chapter-icon" onClick={handleClickChapter}></div>
-            <a id="house-icon-container" href="/components"><div id="house-icon"></div></a>
+            <div id="house-icon-container" onClick={handleClickHouseIcon}><div id="house-icon"></div></div>
           </div>
 
           <div id="book-content">
-            <div id="book-chapter-heading">
-              {location.pathname.split('/')[3] === 'quiz' 
+            <div id="book-chapter-heading" className={pathname === 'result' ? 'text-center' : ''}>
+              
+              {pathname === 'question' 
               ? "Câu hỏi trắc nghiệm" 
-              : location.pathname.split('/')[3] === 'result' 
+              : pathname === 'result' 
               ? "Kết quả"
               : chapterData.chapter.name
               }
               </div>
             <div className="book-chapter-text">
               {!chapter_id 
-              ? <QuizContent quiz={quiz}/> 
+              ? <QuizContent quiz={quiz} /> 
               : chapterData.chapter.text.map((paragraph) => {
                 return <div className="book-chapter-text-paragraph">{paragraph}</div>
               })
               }
             </div>
 
-            <ControlButtonBar book={book} chapterData={chapterData} chapter_id={chapter_id}/>
+            <ControlButtonBar book={book} chapterData={chapterData} chapter_id={chapter_id} handleGetQuiz={handleGetQuiz}/>
             
           </div>
         </div>

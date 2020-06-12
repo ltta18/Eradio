@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchLogOut } from '../../api/Action/User/AuthAction';
 import { fetchSearch } from '../../api/Action/Categories/SearchAction';
 import history from '../../history';
+import { fetchGetBook } from 'api/Action/Book/BookDirectoryAction';
 
 const ComponentsHeader = (props) => {
   const [search_result, set_search_result] = useState(undefined);
 
   const dispatch = useDispatch();
   const location = useLocation();
+  const token = useSelector(state => state.access_token)
 
   const handleSearchClick = () => {
     var search = document.getElementById('search');
@@ -36,10 +38,20 @@ const ComponentsHeader = (props) => {
   }
 
   const handleSearch = async(e) => {
-    const search_result = await dispatch(fetchSearch(props.token, e.target.value));
+    const search_result = await dispatch(fetchSearch(token, e.target.value));
     if (!!search_result) {
       set_search_result(search_result.data.result)
     }
+  }
+
+  const handleClickBookSearch = async(e) => {
+    var book_id = e.target.classList[1].split('-')[1] 
+    const book = await dispatch(fetchGetBook(book_id, token))
+    var progress = book.data.book_progress-1
+    if (progress < 0) {
+      progress = 0
+    }
+    history.push(`./book/${book_id}/chapter/${progress}`)
   }
 
   const handleClickDiscoveryDropdown = () => {
@@ -80,15 +92,15 @@ const ComponentsHeader = (props) => {
             <div className="search-dropdown-content-container">
             <div className="search-dropdown-content-hidescroll">
               {search_result.map((book,i) => {return (
-                <a href={`./book/${book.id}/chapter/0`} className="remove-underline">
-                <div className="search-dropdown-content" style={i === search_result.length-1 ? {'border-bottom': 'none !important'} : {}}>
-                  <img className="search-dropdown-img" src={book.image} alt="book-cover" width="50px" height="50px"></img>
-                  <div className="search-dropdown-info" style={{display: 'block'}}>
-                    <div className="search-dropdown-info-name">{book.name}</div>
-                    <div className="search-dropdown-info-author">{book.author}</div>
+                <div onClick={handleClickBookSearch} className={`remove-underline booksearch-${book.id}`}>
+                <div className={`search-dropdown-content booksearch-${book.id}`} style={i === search_result.length-1 ? {borderBottom: 'none !important'} : {}}>
+                  <img className={`search-dropdown-img booksearch-${book.id}`} src={book.image} alt="book-cover" width="50px" height="50px"></img>
+                  <div className={`search-dropdown-info booksearch-${book.id}`} style={{display: 'block'}}>
+                    <div className={`search-dropdown-info-name booksearch-${book.id}`}>{book.name}</div>
+                    <div className={`search-dropdown-info-author booksearch-${book.id}`}>{book.author}</div>
                   </div>
                 </div>
-                </a>)})}
+                </div>)})}
             </div>
             </div>
             : ''}
@@ -104,7 +116,7 @@ const ComponentsHeader = (props) => {
             <div className="friend-dropdown-content-container">
               <div className="friend-dropdown-content" onClick={handleToAccount}>Thông tin tài khoản</div>
               <div className="friend-dropdown-content" onClick={handleToPayment}>Thanh toán</div>
-              <div className="friend-dropdown-content" style={{'border':'none'}} onClick={() => dispatch(fetchLogOut(props.token))}>Đăng xuất</div>
+              <div className="friend-dropdown-content" style={{'border':'none'}} onClick={() => dispatch(fetchLogOut(token))}>Đăng xuất</div>
             </div>
           </div>
         </div>

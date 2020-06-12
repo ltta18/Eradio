@@ -1,8 +1,10 @@
 import React from 'react';
 import history from '../../history';
+import { useLocation } from 'react-router-dom';
 
 const ControlButtonBar = (props) => {
-  const { chapter_id, chapterData, book } = props
+  const { chapter_id, chapterData, book, handleGetQuiz } = props
+  const location = useLocation()
 
   const handleBackButton = () => {
     var previous_chapter_num = String(parseInt(chapterData.chapter.id)-1);
@@ -15,7 +17,14 @@ const ControlButtonBar = (props) => {
   }
 
   const handleSubmitQuiz = () => {
-    history.push('./result')
+    const answerSet = JSON.parse(localStorage.getItem('answerSet'))
+    // if (Object.keys(answerSet).length === 5) {
+      history.push(`/book/result/${book.book_id}`)
+    // }
+  }
+
+  const handleReturnLibrary = () => {
+    history.push('/components')
   }
 
   const isFirstChapter = () => {
@@ -35,18 +44,40 @@ const ControlButtonBar = (props) => {
           Chương sau<div id="next-button-icon"></div>
         </div>
       )
+    } else if (chapterData.chapter.id !== String(book.directory.length)) {
+      return (
+        <div id="next-button" className="show-flex" onClick={handleGetQuiz}>
+          Quiz<div id="next-button-icon"></div>
+        </div>
+      )
     }
   }
 
-  return (
-    !chapter_id
-    ? <div className={"orange-button"} onClick={handleSubmitQuiz}>
-        <span className="signin-signup-button" >Hoàn thành</span>
+  const isQuizPage = () => {
+    var message
+    var method
+    if (location.pathname.split('/')[2] === 'question') {
+      message = 'Hoàn thành'
+      method = handleSubmitQuiz
+    }
+    else {
+      message = 'Quay lại Trang chủ'
+      method = handleReturnLibrary
+    }
+    return (
+      <div className={"orange-button quiz-button"} onClick={method}>
+        <span className="signin-signup-button" >{message}</span>
       </div>
-    : <div id="chapter-control-button" className="show-flex">
+    )
+  }
+
+  return (
+    chapter_id
+    ? <div id="chapter-control-button" className="show-flex">
         {isFirstChapter()}
         {isLastChapter()}
       </div>
+    : isQuizPage()
   )
 }
 

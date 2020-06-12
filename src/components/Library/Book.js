@@ -5,6 +5,9 @@ import history from '../../history';
 const Book = (props) => {
   const handleClickBook = (book_id) => {
     var currentChapter = (Number(props.book.progress.split("/")[0])-1)
+    if (currentChapter<0) {
+      currentChapter = 0
+    }
     history.push(`/book/${book_id}/chapter/${currentChapter}`);
   }
 

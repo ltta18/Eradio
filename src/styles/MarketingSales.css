@@ -107,14 +107,13 @@
   height: 100%;
   width: 100%;
   padding-right: 16px;
-  padding-left: 8px;
   max-height: 25rem;
 }
 
 .search-dropdown-content {
   font-style: normal;
   font-weight: 500;
-  
+  width: 100%;
   line-height: 20px;
   text-align: left;
   border-bottom: 1.5px solid rgba(0, 0, 0, 0.25);
@@ -220,6 +219,7 @@
 .book-cover {
   width: 100%;
   height: auto;
+  border-radius: 5px;
 }
 
 .book-tag-content {
@@ -595,4 +595,9 @@
   padding-left: 0px !important;
   padding-right: 0px !important;
   min-width: 50px !important;
+}
+
+.quiz-button { 
+  margin: 30px auto; 
+  width: 50%;
 }

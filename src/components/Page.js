@@ -8,7 +8,7 @@ import MarketingSales from './Library/MarketingSales';
 import Account from './User/Account';
 import Payment from './User/Payment';
 import { fetchGetUserDetail } from 'api/Action/User/UserDetailAction';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 var category = [{'icon':'img/sales.svg', 'name':'Marketing & Sales'}] 
 
@@ -17,12 +17,14 @@ const Page = (props) => {
 
   const location = useLocation();
   const dispatch = useDispatch();
+  const token = useSelector(state => state.access_token)
 
   useEffect(() => {
     const getName = async() => { 
-      const user = await dispatch(fetchGetUserDetail(props.token))
-      console.log(user)
-      setName(user.data.email.split('@')[0])
+      const user = await dispatch(fetchGetUserDetail(token))
+      if (user) {
+        setName(user.data.email.split('@')[0])
+      }
     }
 
     getName()
@@ -50,7 +52,7 @@ const Page = (props) => {
         <div className="header-container">
           <Header />
         </div>
-        <ComponentsHeader token={props.token}/>
+        <ComponentsHeader/>
       </div>
       {location.pathname === '/' 
       ? <div onClick={handleClickOutsideSearch}>
@@ -63,9 +65,9 @@ const Page = (props) => {
       </div>,
       <div className="body-container" onClick={handleClickOutsideSearch}>
         {location.pathname === '/components' 
-          ? <MarketingSales token={props.token}/> 
+          ? <MarketingSales/> 
           : location.pathname === '/account' 
-          ? <Account token={props.token}/> 
+          ? <Account/> 
           : <Payment />}
       </div>
       ]}

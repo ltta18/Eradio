@@ -2,23 +2,18 @@ import React from 'react';
 import history from '../../history';
 
 const ChapterBar = (props) => {
-  const { book, chapters, handleGetChapter, handleClickOutsideChapterList } = props;
+  const { book, chapters, handleGetChapter, handleGetQuiz } = props;
 
   const getIconClass = (chapter) => {
     if (Number(chapter.id) === Number(chapters.chapter.id)) {
       return "current-read-button"
     } else if (Number(chapter.id) > Number(book.book_progress)) {
       return "not-yet-read-button"
-    } else if (Number(chapter.id) < Number(book.book_progress)) {
+    } else if (Number(chapter.id) <= Number(book.book_progress)) {
       return "completed-read-button"
     } else {
       return "";
     }
-  }
-
-  const handleGetQuiz = () => {
-    history.push(`book/question/${book.book_id}`)
-    handleClickOutsideChapterList()
   }
 
   return (

@@ -88,7 +88,7 @@ const App = () => {
           // XOR
             ((!!accessToken && route.protected) || (!accessToken && !route.protected)) && 
             (<Route exact path={route.path}>
-              <route.component token={accessToken}/>
+              <route.component/>
             </Route>))
         }
         <Redirect to={defaultRoute} />

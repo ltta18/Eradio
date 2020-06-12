@@ -5,6 +5,7 @@ import { fetchSignIn } from '../../api/Action/User/AuthAction';
 import { fetchSignUp } from '../../api/Action/User/SignupAction';
 import { validateInput } from '../../utils/input';
 import { useLocation } from 'react-router-dom';
+import history from '../../history';
 
 const Frame = (props) => {
   const [email, setEmail] = useState('');
@@ -86,6 +87,14 @@ const Frame = (props) => {
     const verify_hide_inputs = location.pathname === "/verify"?" show-none":"";
     const signup_margin_reduced = location.pathname === '/signup'?"margin-reduced ":"";
 
+    const handleGoSignIn = () => {
+      history.push('/signin')
+    }
+
+    const handleGoToDo = () => {
+      history.push(`/${props.href}`);
+    }
+
     return (
       <div className="signin-signup-container">
         <div className="signin-signup-frame-container">
@@ -122,14 +131,14 @@ const Frame = (props) => {
               <button className={"orange-button "+ signup_margin_reduced + verify_hide_inputs} disabled={isLoading}><span className="signin-signup-button">{props.submit_message}</span></button>
             </form>
 
-            <a className={"orange-button remove-underline " + verify_message_show} href="/signin"><span className="signin-signup-button" >Quay lại trang Đăng nhập</span></a>
+            <div className={"orange-button remove-underline " + verify_message_show} onClick={handleGoSignIn}><span className="signin-signup-button" >Quay lại trang Đăng nhập</span></div>
             <div className={"signin-signup-ask "+ signup_margin_reduced}>
               <div className="account-ask">
                 {props.account_ask}
               </div>
-              <a href={props.href} className="todo-ask remove-underline" >
+              <div className={handleGoToDo} className="todo-ask remove-underline" >
                 {props.todo_ask}
-              </a>
+              </div>
             </div>
             
           </div>
