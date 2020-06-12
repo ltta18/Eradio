@@ -92,7 +92,7 @@ const Frame = (props) => {
     }
 
     const handleGoToDo = () => {
-      history.push(`/${props.href}`);
+      history.push(`${props.href}`);
     }
 
     return (
@@ -136,7 +136,7 @@ const Frame = (props) => {
               <div className="account-ask">
                 {props.account_ask}
               </div>
-              <div className={handleGoToDo} className="todo-ask remove-underline" >
+              <div onClick={handleGoToDo} className="todo-ask remove-underline" >
                 {props.todo_ask}
               </div>
             </div>

@@ -83,6 +83,7 @@
 .signin-signup-frame-checkbox {
   display: flex;
   margin: 13% 0 0 0;
+  cursor: pointer;
 }
 
 .signin-signup-frame-checkbox .checkbox {
@@ -153,6 +154,8 @@
   letter-spacing: 0.1em;
   margin: 10% 0 0 0;
 
+  cursor: pointer;
+
   color: #FFFFFF;
 }
 
@@ -191,6 +194,7 @@
 .todo-ask {
   color: #F58732;
   margin: auto auto;
+  cursor: pointer;
 }
 
 .margin-reduced {
