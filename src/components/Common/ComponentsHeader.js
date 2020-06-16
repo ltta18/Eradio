@@ -83,9 +83,11 @@ const ComponentsHeader = (props) => {
 
     // close discovery dropdown
     var discovery_dropdown_content = document.getElementById('discovery-dropdown-content');
-    if (discovery_dropdown_content.classList.contains("show")) {
-      discovery_dropdown_content.classList.remove("show");
-      discovery_dropdown_content.classList.add("show-none");
+    if (discovery_dropdown_content) {
+      if (discovery_dropdown_content.classList.contains("show")) {
+        discovery_dropdown_content.classList.remove("show");
+        discovery_dropdown_content.classList.add("show-none");
+      }
     }
   }
 
