@@ -1,5 +1,4 @@
 import React from 'react';
-import history from '../../history';
 
 const ChapterBar = (props) => {
   const { book, chapters, handleGetChapter, handleGetQuiz } = props;

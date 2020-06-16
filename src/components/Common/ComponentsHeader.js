@@ -56,8 +56,16 @@ const ComponentsHeader = (props) => {
 
   const handleClickDiscoveryDropdown = () => {
     var discovery_dropdown_content = document.getElementById('discovery-dropdown-content');
-    if (discovery_dropdown_content.classList.contains("show")) discovery_dropdown_content.classList.remove("show");
-    else discovery_dropdown_content.classList.add("show");
+    if (discovery_dropdown_content.classList.contains("show")) {
+      discovery_dropdown_content.classList.remove("show");
+      discovery_dropdown_content.classList.add("show-none");
+    }
+    else {
+      discovery_dropdown_content.classList.remove("show-none");
+      discovery_dropdown_content.classList.add("show");
+    }
+
+    // close friend dropdown
     var friend_dropdown_content = document.getElementsByClassName('friend-dropdown-content-container');
     for (var i=0; i<friend_dropdown_content.length; i++) {
       friend_dropdown_content.item(i).style.display = 'none';
@@ -71,6 +79,13 @@ const ComponentsHeader = (props) => {
     else display_style = 'block';
     for (var i=0; i<friend_dropdown_content.length; i++) {
       friend_dropdown_content.item(i).style.display = display_style;
+    }
+
+    // close discovery dropdown
+    var discovery_dropdown_content = document.getElementById('discovery-dropdown-content');
+    if (discovery_dropdown_content.classList.contains("show")) {
+      discovery_dropdown_content.classList.remove("show");
+      discovery_dropdown_content.classList.add("show-none");
     }
   }
 
@@ -114,9 +129,9 @@ const ComponentsHeader = (props) => {
         <div style={{'margin': 'auto 0'}}>
           <div id="friend-dropdown-icon" className="dropdown-icon" onClick={handleClickFriendDropdown}>
             <div className="friend-dropdown-content-container">
-              <div className="friend-dropdown-content" onClick={handleToAccount}>Thông tin tài khoản</div>
-              <div className="friend-dropdown-content" onClick={handleToPayment}>Thanh toán</div>
-              <div className="friend-dropdown-content" style={{'border':'none'}} onClick={() => dispatch(fetchLogOut(token))}>Đăng xuất</div>
+              <div className="small-text friend-dropdown-content" onClick={handleToAccount}>Thông tin tài khoản</div>
+              <div className="small-text friend-dropdown-content" onClick={handleToPayment}>Thanh toán</div>
+              <div className="small-text friend-dropdown-content" style={{'border':'none'}} onClick={() => dispatch(fetchLogOut(token))}>Đăng xuất</div>
             </div>
           </div>
         </div>

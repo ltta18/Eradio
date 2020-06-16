@@ -105,17 +105,17 @@ const Frame = (props) => {
             </div>
             <div id="error" className="show-none">*** Email/ Mật khẩu không hợp lệ</div>
             <form onSubmit={handleSubmit}>
-              <div id="email-container" className={"signin-signup-frame-account " + verify_hide_inputs}>
+              <div id="email-container" className={"small-text signin-signup-frame-account " + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Email" 
                       type="text" name="email" id="email" onChange={handleChange}>
                 </input>
               </div>
-              <div id="password-container" className={"signin-signup-frame-account " + verify_hide_inputs}>
+              <div id="password-container" className={"small-text signin-signup-frame-account " + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Mật khẩu" 
                       type="password" name="password" id="password" onChange={handleChange}>
                 </input>
               </div>
-              <div id="retype-password-container" className={"signin-signup-frame-account " + props.pass_retype + verify_hide_inputs}>
+              <div id="retype-password-container" className={"small-text signin-signup-frame-account " + props.pass_retype + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Nhập lại mật khẩu" 
                        type="password" name="retype_password" id="retype-password" onChange={handleChange}>
                 </input>
@@ -123,13 +123,13 @@ const Frame = (props) => {
               
               <div className={"signin-signup-frame-checkbox " + verify_hide_inputs}>
                 <input type="checkbox" id="remember" name="remember" className="checkbox"></input><span className="signin-signup-frame-new-checkbox" onClick={handleClick}></span>
-                <label htmlFor="remember" className="checkbox-text">{props.checkbox_message}</label>            
+                <label htmlFor="remember" className="small-text checkbox-text">{props.checkbox_message}</label>            
               </div>
-              <button className={"orange-button "+ signup_margin_reduced + verify_hide_inputs} disabled={isLoading}><span className="signin-signup-button">{props.submit_message}</span></button>
+              <button className={"grey-18-normal-text orange-button "+ signup_margin_reduced + verify_hide_inputs} disabled={isLoading}><span className="signin-signup-button">{props.submit_message}</span></button>
             </form>
 
-            <div className={"orange-button remove-underline " + verify_message_show} onClick={handleGoSignIn}><span className="signin-signup-button" >Quay lại trang Đăng nhập</span></div>
-            <div className={"signin-signup-ask "+ signup_margin_reduced}>
+            <div className={"grey-18-normal-text orange-button" + verify_message_show} onClick={handleGoSignIn}><span className="signin-signup-button" >Quay lại trang Đăng nhập</span></div>
+            <div className={"small-text signin-signup-ask "+ signup_margin_reduced}>
               <div className="account-ask">
                 {props.account_ask}
               </div>

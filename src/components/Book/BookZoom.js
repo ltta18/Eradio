@@ -141,7 +141,7 @@ const BookZoom = (props) => {
               : chapterData.chapter.name
               }
               </div>
-            <div className="book-chapter-text">
+            <div className="book-chapter-text small-text">
               {!chapter_id 
               ? <QuizContent quiz={quiz} /> 
               : chapterData.chapter.text.map((paragraph) => {

@@ -3,11 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetUserDetail } from 'api/Action/User/UserDetailAction';
 import Loading from 'components/Common/Loading';
 
-const default_state = {
-  is_loading: true,
-  detail: {}
-}
-
 const Account = (props) => {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ detail, setDetail ] = useState({email: '', type_account: '', registered_on: '', exp: ''})

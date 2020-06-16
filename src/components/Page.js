@@ -35,6 +35,7 @@ const Page = (props) => {
     var friend_dropdown = document.getElementsByClassName('friend-dropdown-content-container');
     var dropdown = document.getElementsByClassName('dropdown');
     var dropdown_icon = document.getElementsByClassName('dropdown-icon');
+    var category_dropdown = document.getElementById('discovery-dropdown-content')
     search.classList.remove('show-flex');
     search.classList.add('show-none');
     friend_dropdown.item(0).style.display = 'none';
@@ -43,6 +44,7 @@ const Page = (props) => {
       dropdown.item(i).classList.remove('show-none');
       dropdown_icon.item(i).classList.add('show-flex');
       dropdown_icon.item(i).classList.remove('show-none');
+      category_dropdown.classList.remove('show')
     }
   }
 

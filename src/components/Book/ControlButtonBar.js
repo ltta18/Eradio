@@ -17,7 +17,7 @@ const ControlButtonBar = (props) => {
   }
 
   const handleSubmitQuiz = () => {
-    const answerSet = JSON.parse(localStorage.getItem('answerSet'))
+    // const answerSet = JSON.parse(localStorage.getItem('answerSet'))
     // if (Object.keys(answerSet).length === 5) {
       history.push(`/book/result/${book.book_id}`)
     // }
@@ -30,7 +30,7 @@ const ControlButtonBar = (props) => {
   const isFirstChapter = () => {
     if (chapterData.chapter.id !== String(0)) {
       return (
-        <div id="back-button" className="show-flex" onClick={handleBackButton}>
+        <div id="back-button" className="small-text show-flex" onClick={handleBackButton}>
           <div id="back-button-icon"></div>Chương trước
         </div>
       )
@@ -40,13 +40,13 @@ const ControlButtonBar = (props) => {
   const isLastChapter = () => {
     if (chapterData.chapter.id !== String(parseInt(book.directory.length)-1)) {
       return (
-        <div id="next-button" className="show-flex" onClick={handleNextButton}>
+        <div id="next-button" className="small-text show-flex" onClick={handleNextButton}>
           Chương sau<div id="next-button-icon"></div>
         </div>
       )
     } else if (chapterData.chapter.id !== String(book.directory.length)) {
       return (
-        <div id="next-button" className="show-flex" onClick={handleGetQuiz}>
+        <div id="next-button" className="small-text show-flex" onClick={handleGetQuiz}>
           Quiz<div id="next-button-icon"></div>
         </div>
       )
@@ -65,7 +65,7 @@ const ControlButtonBar = (props) => {
       method = handleReturnLibrary
     }
     return (
-      <div className={"orange-button quiz-button"} onClick={method}>
+      <div className={"grey-18-normal-text orange-button quiz-button"} onClick={method}>
         <span className="signin-signup-button" >{message}</span>
       </div>
     )

@@ -28,7 +28,7 @@ const fetchGetChapterRequest = () => {
 export const fetchGetChapter = (book_id, chapter_id, token) => async (dispatch) => {
   dispatch(fetchGetChapterRequest())
   try {
-    const response = await axios.get('http://api.eradio.vn/book/'+book_id+'/chapter/'+chapter_id, {
+    const response = await axios.get('https://api.eradio.vn/book/'+book_id+'/chapter/'+chapter_id, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

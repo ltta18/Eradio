@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import {Router, Switch, Route, Redirect} from 'react-router-dom';
 import history from './history'
 import { useSelector } from 'react-redux';
@@ -11,7 +11,7 @@ import Page from 'components/Page';
 import SignIn from 'components/User/SignIn';
 import SignUp from 'components/User/SignUp';
 import UserVerify from 'components/User/UserVerify';
-import { fetchLogOut } from 'api/Action/User/AuthAction';
+// import { fetchLogOut } from 'api/Action/User/AuthAction';
 
 
 const routes = [

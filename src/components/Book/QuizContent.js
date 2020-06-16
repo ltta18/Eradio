@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchQuestion } from 'api/Action/Book/Question';
-import Loading from 'components/Common/Loading';
 
 const QuizContent = (props) => {
   const [ answerSet, setAnswerSet ] = useState({})
@@ -21,7 +20,7 @@ const QuizContent = (props) => {
     const getQuestion = async() => {
       const book_id = location.pathname.split('/')[3]
       const question = await dispatch(fetchQuestion(book_id, token));
-      question.data.questions.map((q, i) => {
+      question.data.questions.forEach(q => {
         setCorrectAnswer(prevState => [...prevState, q.correct_answer])
         setQuestion(prevState => [...prevState, q.question])
         setPossibleAnswerSet(prevState => [...prevState, q.answers])

@@ -40,8 +40,6 @@
 }
 
 
-
-
 #eradio-logo {
   background: url("../img/eradio_logo.svg");
   width: 50px;
@@ -107,15 +105,8 @@
 
 /* Category */
 .category-text {
-  font-style: normal;
-  font-weight: normal;
-  font-size: 18px;
-  line-height: 23px;
-  align-items: center;
-
   margin-left: 15px;
-  color: #000000;
-
+  color: #000000 !important;
 }
 
 .category {
