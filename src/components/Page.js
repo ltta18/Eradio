@@ -9,15 +9,16 @@ import Account from './User/Account';
 import Payment from './User/Payment';
 import { fetchGetUserDetail } from 'api/Action/User/UserDetailAction';
 import { useDispatch, useSelector } from 'react-redux';
+import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
 var category = [{'icon':'img/sales.svg', 'name':'Marketing & Sales'}] 
 
-const Page = (props) => {
+const Page = () => {
   const [ name, setName ] = useState('')
 
   const location = useLocation();
   const dispatch = useDispatch();
-  const token = useSelector(state => state.access_token)
+  const token = useSelector(selectAccessToken)
 
   useEffect(() => {
     const getName = async() => { 

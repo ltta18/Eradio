@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetUserDetail } from 'api/Action/User/UserDetailAction';
 import Loading from 'components/Common/Loading';
+import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
 const Account = (props) => {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ detail, setDetail ] = useState({email: '', type_account: '', registered_on: '', exp: ''})
   const dispatch = useDispatch();
-  const token = useSelector(state => state.access_token)
+  const token = useSelector(selectAccessToken)
 
   useEffect (() => {
     const getUserDetail = async() => {

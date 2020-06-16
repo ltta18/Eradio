@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchQuestion } from 'api/Action/Book/Question';
+import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
 const QuizContent = (props) => {
   const [ answerSet, setAnswerSet ] = useState({})
@@ -14,7 +15,7 @@ const QuizContent = (props) => {
   
   const location = useLocation()
   const dispatch = useDispatch()
-  const token = useSelector(state => state.access_token)
+  const token = useSelector(selectAccessToken)
 
   useEffect(() => {
     const getQuestion = async() => {
@@ -28,7 +29,7 @@ const QuizContent = (props) => {
     }
 
     if (location.pathname.split('/')[2] === 'question') getQuestion()
-  }, [dispatch, token, location])
+  }, [dispatch, token])
 
   useEffect(() => {
     localStorage.setItem('answerSet', JSON.stringify(answerSet))
@@ -83,23 +84,23 @@ const QuizContent = (props) => {
       )}
     else {
       if (!!question[4] && !!possibleAnswerSet[4]) {
-      return (
-        question.map((q, i) => {
-          return (
-            <div>
-              <h2>{`Câu hỏi ${i+1}: ${q}`}</h2>
-              {possibleAnswerSet[i].map((answer, j) => {
-                return (
-                <div id={`question${i}-answer${j}`} className="show-flex" style={{marginBottom: '3px'}} onClick={handleClickAnswer}>
-                  <div id={`question${i}-answer${j}-button`} className={`chapter-status-button not-yet-read-button answer question${i}`}></div>
-                  {answer}
-                </div>)
-              })}
-            </div>
-          )
-        })
-      )
-    }
+        return (
+          question.map((q, i) => {
+            return (
+              <div>
+                <h2>{`Câu hỏi ${i+1}: ${q}`}</h2>
+                {possibleAnswerSet[i].map((answer, j) => {
+                  return (
+                  <div id={`question${i}-answer${j}`} className="show-flex" style={{marginBottom: '3px'}} onClick={handleClickAnswer}>
+                    <div id={`question${i}-answer${j}-button`} className={`chapter-status-button not-yet-read-button answer question${i}`}></div>
+                    <div style={{width: '85%', margin: 'auto 0'}}>{answer}</div>
+                  </div>)
+                })}
+              </div>
+            )
+          })
+        )
+      }
     }
   }
              

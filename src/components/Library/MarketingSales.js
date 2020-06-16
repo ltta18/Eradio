@@ -3,6 +3,7 @@ import ProgressBar from './ProgressBar';
 import ListBook from './ListBook';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchGetLibrary } from 'api/Action/Categories/LibraryAction';
+import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
 
 const MarketingSales = (props) => {
@@ -12,7 +13,7 @@ const MarketingSales = (props) => {
   const [ isFinishedList, setIsFinishedList ] = useState(false);
 
   const dispatch = useDispatch()
-  const token = useSelector(state => state.access_token)
+  const token = useSelector(selectAccessToken)
 
   useEffect(() => {
     const getLibrary = async() => {

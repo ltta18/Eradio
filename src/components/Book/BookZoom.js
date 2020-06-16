@@ -10,8 +10,7 @@ import ChapterBar from './ChapterBar';
 import BottomBar from './BottomBar';
 import QuizContent from './QuizContent';
 import ControlButtonBar from './ControlButtonBar';
-
-const quiz = [['a','b','c','d'], ['aa','bb','cc','dd']]
+import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
 const BookZoom = (props) => {
   const [ book, setBook ] = useState({ directory: [], book_progress: '' });
@@ -20,7 +19,7 @@ const BookZoom = (props) => {
 
   const params = useParams();
   const location = useLocation();
-  const token = useSelector(state => state.access_token)
+  const token = useSelector(selectAccessToken)
   const { book_id, chapter_id } = params;
   const pathname = location.pathname.split('/')[2]
 
@@ -62,17 +61,21 @@ const BookZoom = (props) => {
 
   const handleClickChapter = () => {
     var chapter_list = document.getElementById('chapter-list-show');
+    var progress_line = document.getElementById('chapter-list-progress-line')
     var filter = document.getElementById('filter');
     var outside_chapter_list = document.getElementById('book-zoom-body');
     var chapter_list_container =document.getElementById('chapter-list-container');
-    if (chapter_list.classList.contains('show-none')) {
-      chapter_list.classList.remove('show-none');
+    if (chapter_list.classList.contains('chapter-list-hide')) {
+      chapter_list.setAttribute('class','chapter-list-show');
+      progress_line.style.position = 'fixed';
       filter.classList.remove('show-none');
       filter.style.position = 'absolute';
       outside_chapter_list.classList.add('book-zoom-body-left-open');
-      chapter_list_container.style.paddingRight = chapter_list_container.offsetWidth - chapter_list_container.clientWidth + "px";
+      chapter_list_container.style.paddingRight = '16px';
     }
     else {
+      progress_line.style.position = '';
+      chapter_list.setAttribute('class','chapter-list-hide');
       handleClickOutsideChapterList();
     }
   }
@@ -85,11 +88,13 @@ const BookZoom = (props) => {
     var chapter_list = document.getElementById('chapter-list-show');
     var filter = document.getElementById('filter');
     var outside_chapter_list = document.getElementById('book-zoom-body');
+    var progress_line = document.getElementById('chapter-list-progress-line')
     chapter_list.style.position = '';
-    chapter_list.classList.add('show-none');
+    chapter_list.setAttribute('class','chapter-list-hide');
     filter.classList.add('show-none');
     filter.style.position = '';
     outside_chapter_list.classList.remove('book-zoom-body-left-open');
+    progress_line.style.position = ''
   }
 
   const handleGetChapter = (e) => {
@@ -117,7 +122,7 @@ const BookZoom = (props) => {
       {isLoading
       ? <Loading /> 
       :<div>
-        <div id="chapter-list-show" className="show-none">
+        <div id="chapter-list-show" className="chapter-list-hide">
         <div id="chapter-list-container" className="show-flex" onScroll={handleScroll}>
             <ChapterBar book={book} chapters={chapterData} handleGetChapter={handleGetChapter} handleGetQuiz={handleGetQuiz} />
             <div className="chapter-icon" onClick={handleClickChapter}></div>
@@ -143,9 +148,9 @@ const BookZoom = (props) => {
               </div>
             <div className="book-chapter-text small-text">
               {!chapter_id 
-              ? <QuizContent quiz={quiz} /> 
+              ? <QuizContent/> 
               : chapterData.chapter.text.map((paragraph) => {
-                return <div className="book-chapter-text-paragraph">{paragraph}</div>
+                return <div key={paragraph} className="book-chapter-text-paragraph">{paragraph}</div>
               })
               }
             </div>

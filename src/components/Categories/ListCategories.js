@@ -9,7 +9,7 @@ const ListCategories = (props) => {
         <div className="row">
           {props.categories ? 
             props.categories.map(category => {
-              return <Category icon={category.icon} category={category} />
+              return <Category key={category.name} icon={category.icon} category={category} />
             }) : 
             ''
           }

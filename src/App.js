@@ -11,6 +11,7 @@ import Page from 'components/Page';
 import SignIn from 'components/User/SignIn';
 import SignUp from 'components/User/SignUp';
 import UserVerify from 'components/User/UserVerify';
+import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
 const routes = [
   {
@@ -51,7 +52,7 @@ const routes = [
   {
     name: 'result-route',
     component: BookZoom,
-    path: '/book/result/:book_id',
+    path: '/book/result',
     protected: true,
   },
 
@@ -86,15 +87,16 @@ const routes = [
 ]
 
 const App = () => {
-  const accessToken = useSelector(state => state.access_token);
+  const accessToken = useSelector(selectAccessToken);
   const defaultRoute = accessToken ? '/' : '/signin';
+
   return  (
     <Router history={history}>
       <Switch>
         {
           routes.map((route) => 
           // XOR
-            ((!!accessToken && route.protected) || (!accessToken && !route.protected)) && 
+            !!accessToken === route.protected && 
             (<Route key={route.name} exact path={route.path}>
               <route.component/>
             </Route>))

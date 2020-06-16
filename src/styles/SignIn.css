@@ -2,7 +2,6 @@
 @media only screen and (max-width:650px) {
   .signin-signup-frame-container {
     width: 80vw !important;
-    /* height: 30rem !important; */
     left: calc(50% - 80vw/2) !important;
   }
 

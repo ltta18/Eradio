@@ -7,7 +7,7 @@ import { FETCH_SIGNIN_REQUEST,
 
 const initialState = {
   access_token: '',
-  error: '',
+  error: ''
 }
 
 const auth_reducer = (state = initialState, action) => {
@@ -46,6 +46,3 @@ const auth_reducer = (state = initialState, action) => {
 }
 
 export default auth_reducer;
-
-export const selectAccessToken = state => state.auth_reducer.access_token;
-export const selectAuthError = state => state.auth_reducer.error;

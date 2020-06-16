@@ -5,13 +5,14 @@ import { fetchLogOut } from '../../api/Action/User/AuthAction';
 import { fetchSearch } from '../../api/Action/Categories/SearchAction';
 import history from '../../history';
 import { fetchGetBook } from 'api/Action/Book/BookDirectoryAction';
+import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
 const ComponentsHeader = (props) => {
   const [search_result, set_search_result] = useState(undefined);
 
   const dispatch = useDispatch();
   const location = useLocation();
-  const token = useSelector(state => state.access_token)
+  const token = useSelector(selectAccessToken)
 
   const handleSearchClick = () => {
     var search = document.getElementById('search');

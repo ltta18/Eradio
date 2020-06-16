@@ -1,4 +1,4 @@
-import {createStore, applyMiddleware, compose} from 'redux';
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import auth_reducer from './Reducer/AuthReducer';
 import { persistStore, persistReducer } from 'redux-persist';
@@ -14,9 +14,10 @@ const composeEnhancers =
 const persistConfig = {
   key: 'authType',
   storage: storage,
+  whitelist:['auth_reducer']
 };
 
-const persisted_reducer = persistReducer(persistConfig, auth_reducer);
+const persisted_reducer = persistReducer(persistConfig, combineReducers({auth_reducer}));
 
 const store = createStore(persisted_reducer, composeEnhancers(applyMiddleware(thunk)));
 

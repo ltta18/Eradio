@@ -19,7 +19,7 @@ const ChapterBar = (props) => {
     <div id="chapter-list">
       {book.directory.map((chapter) => {
         return (
-          <div>
+          <div key={chapter.id}>
             <div id={'book'+chapter.id} className="chapter show-flex" onClick={handleGetChapter}>
               <div
                 id={'book'+chapter.id}

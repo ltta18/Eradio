@@ -8,7 +8,7 @@ const ListBook = (props) => {
       {props.isLoading
         ? <Loading />
         : props.library.map((book) => {
-            return <Book book={book} /> }) 
+            return <Book key={book.name} book={book} /> }) 
         }
     </div>
   ) 

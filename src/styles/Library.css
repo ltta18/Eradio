@@ -16,8 +16,13 @@
     margin: 0 auto 30px auto;
   }
 
-  #chapter-list-show {
+  .chapter-list-show {
     width: 100% !important;
+    -o-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -webkit-transition: 0.2s;
+    transition: all linear 0.2s;
   }
 
   #chapter-progress-text {
@@ -325,7 +330,19 @@
   height: 100%;
 }
 
-#chapter-list-show {
+.chapter-list-hide {
+  width: 0px;
+  height: 0px;
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  transition: all ease 0.2s;
+
+}
+
+.chapter-list-show {
+  position: absolute;
   top: 0px;
   bottom: 0px;
   left: 0px;
@@ -335,15 +352,11 @@
   background: white;
   overflow: hidden;
   z-index: 3;
-}
-
-@media (min-width: 20em) {
-  #chapter-list-show {
-    position: absolute;
-    transition-duration: 2s;
-    transition: ease-in-out;
-  }
- 
+  -o-transition: 0.2s;
+  -ms-transition: 0.2s;
+  -moz-transition: 0.2s;
+  -webkit-transition: 0.2s;
+  transition: all linear 0.2s;
 }
 
 #chapter-list-container {
@@ -363,8 +376,6 @@
   }
 }
 
-
-
 #chapter-list {
   display: table;
   width: 90%;
@@ -380,10 +391,9 @@
 }
 
 #chapter-list-progress-line {
-  position: fixed;
-  top: 65px;
   width: 2px;
   height: 100%;
+  top: 80px;
   margin-left: 40px;
   z-index: 2;
   
@@ -402,10 +412,10 @@
 
 .chapter-icon {
   background: url('../img/chapter-icon.svg') no-repeat;
-  width: 2rem;
+  width: 2.3rem;
   height: 2rem;
   margin-left: 0.7rem;
-  margin-right: 0.7rem;
+  margin-right: 0.2rem;
   margin-top: 65px;
   cursor: pointer;
 }
@@ -436,8 +446,7 @@
 .chapter-status-button {
   width: 25px;
   height: 24px;
-  margin-left: 29px;
-  margin-right: 10px;
+  margin: 0 10px auto 29px;
   padding-top: 0;
   padding-bottom: 0 !important;
   border: none;
