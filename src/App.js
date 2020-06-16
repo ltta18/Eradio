@@ -11,59 +11,66 @@ import Page from 'components/Page';
 import SignIn from 'components/User/SignIn';
 import SignUp from 'components/User/SignUp';
 import UserVerify from 'components/User/UserVerify';
-// import { fetchLogOut } from 'api/Action/User/AuthAction';
-
 
 const routes = [
   {
+    name: 'signin-route',
     component: SignIn,
     path: '/signin',
     protected: false,
   },
   
   {
+    name: 'signup-route',
     component: SignUp,
     path: '/signup',
     protected: false,
   },
     
   {
+    name: 'verify-route',
     component: UserVerify,
     path: '/verify',
     protected: false,
   },
 
   {
+    name: 'page-route',
     component: Page,
     path: '/',
     protected: true,
   },
 
   {
+    name: 'question-route',
     component: BookZoom,
     path: '/book/question/:book_id',
     protected: true,
   },
 
   {
+    name: 'result-route',
     component: BookZoom,
     path: '/book/result/:book_id',
     protected: true,
   },
 
   {
+    name: 'book-route',
     component: BookZoom,
     path: '/book/:book_id/chapter/:chapter_id',
     protected: true,
   },
 
   {
+    name: 'list-book-route',
     component: Page,
     path: '/components',
     protected: true,
   },
 
   {
+    name: 'account-route',
     component: Page,
     path: '/account',
     protected: true,
@@ -71,6 +78,7 @@ const routes = [
 
 
   {
+    name: 'payment-route',
     component: Page,
     path: '/payment',
     protected: true,
@@ -87,7 +95,7 @@ const App = () => {
           routes.map((route) => 
           // XOR
             ((!!accessToken && route.protected) || (!accessToken && !route.protected)) && 
-            (<Route exact path={route.path}>
+            (<Route key={route.name} exact path={route.path}>
               <route.component/>
             </Route>))
         }

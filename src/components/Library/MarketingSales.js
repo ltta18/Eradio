@@ -30,7 +30,7 @@ const MarketingSales = (props) => {
     }
 
     getLibrary()
-    }, []
+    }, [dispatch, token]
   )
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const MarketingSales = (props) => {
     }
     fetchLibraries();
     
-  }, [isFinishedList])
+  }, [isFinishedList, token, dispatch])
   
 
   const handleClick = (e) => {

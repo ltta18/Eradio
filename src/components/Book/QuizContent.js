@@ -28,7 +28,7 @@ const QuizContent = (props) => {
     }
 
     if (location.pathname.split('/')[2] === 'question') getQuestion()
-  }, [])
+  }, [dispatch, token, location])
 
   useEffect(() => {
     localStorage.setItem('answerSet', JSON.stringify(answerSet))

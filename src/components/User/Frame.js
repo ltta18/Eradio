@@ -11,6 +11,7 @@ const Frame = (props) => {
   const [email, setEmail] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
   const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   const location = useLocation();
@@ -18,7 +19,8 @@ const Frame = (props) => {
 
   const isValid = () => {
     const pathname = location.pathname
-    const { errors, isValid } = validateInput({email, retypePassword, password}, pathname);
+    const { errors: newErrors, isValid } = validateInput({email, retypePassword, password}, pathname);
+    setErrors(newErrors);
     return { errors, isValid};
   }
 
@@ -44,31 +46,7 @@ const Frame = (props) => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    var {errors, isValid: valid} = isValid();
-    var checkbox = document.getElementsByClassName('signin-signup-frame-new-checkbox').item(0);
-    var button = document.getElementById('remember');
-
-    if (errors.email) {
-      var email_container = document.getElementById('email-container');
-      email_container.style.borderColor = '#cc0000';
-    }
-
-    if (errors.password) {
-      var password_container = document.getElementById('password-container');
-      password_container.style.borderColor = '#cc0000';
-    }
-
-    // if sign up
-    if (props.checkbox_message !== "Nhớ tài khoản của tôi") {
-      if (errors.retypePassword) {
-        var retype_password = document.getElementById('retype-password-container');
-        retype_password.style.borderColor = '#cc0000';
-      }
-      if (button.checked === false) {
-        checkbox.style.borderColor = '#cc0000';
-        
-      }
-    }
+    var { isValid: valid } = isValid();
 
     if (valid) {
       setIsLoading(true);
@@ -77,6 +55,11 @@ const Frame = (props) => {
       }
       else await dispatch(fetchSignUp(email, password));
       setIsLoading(false);
+    }
+    else {
+      var error = document.getElementById('error');
+      error.classList.add('show-flex');
+      error.classList.remove('show-none');
     }
   }
     // if isVerify, want to show message and hide all input bars
@@ -103,23 +86,28 @@ const Frame = (props) => {
             <div id="verify-message" className={"black-big-text " + verify_message_show}>
               Cảm ơn bạn đã đăng ký!
             </div>
-            <div id="error" className="show-none">*** Email/ Mật khẩu không hợp lệ</div>
+            
             <form onSubmit={handleSubmit}>
               <div id="email-container" className={"small-text signin-signup-frame-account " + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Email" 
                       type="text" name="email" id="email" onChange={handleChange}>
                 </input>
               </div>
+              <div id="error" className={errors.email ? "show-flex" : "hidden"}><div className="error-icon"></div><div>{`${errors.email}`}</div></div>
+
               <div id="password-container" className={"small-text signin-signup-frame-account " + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Mật khẩu" 
                       type="password" name="password" id="password" onChange={handleChange}>
                 </input>
               </div>
+              <div id="error" className={errors.password ? "show-flex" : "hidden"}><div className="error-icon"></div><div>{`${errors.password}`}</div></div>
+
               <div id="retype-password-container" className={"small-text signin-signup-frame-account " + props.pass_retype + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Nhập lại mật khẩu" 
                        type="password" name="retype_password" id="retype-password" onChange={handleChange}>
                 </input>
               </div>
+              <div id="error" className={errors.retypePassword ? "show-flex" : "hidden" + verify_hide_inputs}><div className="error-icon"></div><div>{`${errors.retypePassword}`}</div></div>
               
               <div className={"signin-signup-frame-checkbox " + verify_hide_inputs}>
                 <input type="checkbox" id="remember" name="remember" className="checkbox"></input><span className="signin-signup-frame-new-checkbox" onClick={handleClick}></span>

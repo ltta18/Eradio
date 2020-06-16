@@ -28,7 +28,7 @@ const Page = (props) => {
     }
 
     getName()
-  }, [])
+  }, [dispatch, token])
 
   const handleClickOutsideSearch = () => {
     var search = document.getElementById('search');

@@ -62,15 +62,13 @@ export const fetchSignIn = (email, password) => async (dispatch) => {
     if (response) {
       dispatch(fetchSignInFailure(response.status));
 
-      var error = document.getElementById('error');
-      error.classList.add('show-flex');
-      error.classList.remove('show-none');
       
-      var email_container = document.getElementById('email-container');
-      email_container.style.borderColor = '#cc0000';
+      
+      // var email_container = document.getElementById('email-container');
+      // email_container.style.borderColor = '#cc0000';
 
-      var password_container = document.getElementById('password-container');
-      password_container.style.borderColor = '#cc0000';
+      // var password_container = document.getElementById('password-container');
+      // password_container.style.borderColor = '#cc0000';
     }
   }
 };

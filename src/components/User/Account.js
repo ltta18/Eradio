@@ -19,7 +19,7 @@ const Account = (props) => {
        setIsLoading(false);
     }
     getUserDetail()
-  }, [])
+  }, [dispatch, token])
 
     return (
       <div id="account">

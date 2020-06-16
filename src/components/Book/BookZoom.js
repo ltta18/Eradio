@@ -44,7 +44,7 @@ const BookZoom = (props) => {
       chapter_progress.style.width = String((parseInt(book.book_progress)+1)/(book.directory.length)*100)+'%';
     }
 
-  }, [chapter_id])
+  }, [chapter_id, token, dispatch])
 
   useEffect (() => {
     if (!isLoading) {
