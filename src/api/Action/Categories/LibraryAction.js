@@ -27,7 +27,7 @@ const fetchGetLibraryRequest = () => {
 export const fetchGetLibrary = (token) => async (dispatch) => {
   dispatch(fetchGetLibraryRequest())
   try {
-    const response = await axios.get('http://10.2.50.232:1209/category/library', {
+    const response = await axios.get('http://api.eradio.vn/category/library', {
       headers: {
         Authorization: `Bearer ${token}`,
       },

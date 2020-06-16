@@ -33,9 +33,10 @@ const fetchLogOutRequest = () => {
   }
 }
 
-const fetchLogOutSuccess = () => {
+const fetchLogOutSuccess = (users) => {
   return {
     type: FETCH_LOGOUT_SUCCESS,
+    payload: users
   }
 }
 
@@ -49,7 +50,7 @@ const fetchLogOutFailure = (error) => {
 export const fetchSignIn = (email, password) => async (dispatch) => {
   dispatch(fetchSignInRequest())
   try {
-    const response = await axios.post('http://10.2.50.232:1209/auth/login', {
+    const response = await axios.post('http://api.eradio.vn/auth/login', {
       email: email,
       password: password
     })
@@ -79,7 +80,7 @@ export const fetchLogOut = (token) => (dispatch) => {
   try {
     const response = axios({
       method: 'POST',
-      url: 'http://10.2.50.232:1209/auth/logout',
+      url: 'http://api.eradio.vn/auth/logout',
       headers: {
         Authorization: `Bearer ${token}`
       },
