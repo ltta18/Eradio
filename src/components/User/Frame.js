@@ -128,7 +128,7 @@ const Frame = (props) => {
               <button className={"grey-18-normal-text orange-button "+ signup_margin_reduced + verify_hide_inputs} disabled={isLoading}><span className="signin-signup-button">{props.submit_message}</span></button>
             </form>
 
-            <div className={"grey-18-normal-text orange-button" + verify_message_show} onClick={handleGoSignIn}><span className="signin-signup-button" >Quay lại trang Đăng nhập</span></div>
+            <div className={"grey-18-normal-text orange-button " + verify_message_show} onClick={handleGoSignIn}><span className="signin-signup-button" >Quay lại trang Đăng nhập</span></div>
             <div className={"small-text signin-signup-ask "+ signup_margin_reduced}>
               <div className="account-ask">
                 {props.account_ask}

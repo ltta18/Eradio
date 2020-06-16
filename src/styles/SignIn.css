@@ -78,7 +78,7 @@
 /* Checkbox */
 .signin-signup-frame-checkbox {
   display: flex;
-  margin: 13% 0 0 0;
+  margin: 5% 0 7% 0;
   cursor: pointer;
 }
 
@@ -138,17 +138,19 @@
   display: flex;
   align-items: center;
   letter-spacing: 0.1em;
-  margin: 10% 0 0 0;
+  margin: 10% 0 5% 0;
 
   cursor: pointer;
 
-  color: #FFFFFF;
+  color: #FFFFFF !important;
 }
 
 .signin-signup-button {
   display: flex;
+  text-align: center;
   align-items: center;
   margin: auto auto;
+  color: #FFFFFF !important;
 }
 
 
