@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ProgressBar from './ProgressBar';
 import ListBook from './ListBook';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetLibrary } from 'api/Action/Categories/LibraryAction';
+import { fetchLibrary } from 'api/Action/Categories/LibraryAction';
 import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
 
@@ -18,7 +18,7 @@ const MarketingSales = (props) => {
   useEffect(() => {
     const getLibrary = async() => {
       setIsLoading(true);
-      const library = await dispatch(fetchGetLibrary(token));
+      const library = await dispatch(fetchLibrary(token));
       if (!!library) {
         setLibrary(library.data.bookself.reading);
         setLibraryProgress(library.data.library_progress);
@@ -37,7 +37,7 @@ const MarketingSales = (props) => {
   useEffect(() => {
     const fetchLibraries = async () => {
       setIsLoading(true);
-      var library = await dispatch(fetchGetLibrary(token));
+      var library = await dispatch(fetchLibrary(token));
       if (!!library) {
         if (isFinishedList) {
           setLibrary(library.data.bookself.finished);

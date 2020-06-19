@@ -87,11 +87,11 @@ const QuizContent = (props) => {
         return (
           question.map((q, i) => {
             return (
-              <div>
+              <div key={`question${i}`}>
                 <h2>{`Câu hỏi ${i+1}: ${q}`}</h2>
                 {possibleAnswerSet[i].map((answer, j) => {
                   return (
-                  <div id={`question${i}-answer${j}`} className="show-flex" style={{marginBottom: '3px'}} onClick={handleClickAnswer}>
+                  <div key={`question${i}-answer${j}`} id={`question${i}-answer${j}`} className="show-flex" style={{marginBottom: '3px'}} onClick={handleClickAnswer}>
                     <div id={`question${i}-answer${j}-button`} className={`chapter-status-button not-yet-read-button answer question${i}`}></div>
                     <div style={{width: '85%', margin: 'auto 0'}}>{answer}</div>
                   </div>)

@@ -1,10 +1,10 @@
 import React from 'react';
 
 const ChapterBar = (props) => {
-  const { book, chapters, handleGetChapter, handleGetQuiz } = props;
+  const { book, chapters, handleGetChapter, handleGetQuiz, chapterId } = props;
 
   const getIconClass = (chapter) => {
-    if (Number(chapter.id) === Number(chapters.chapter.id)) {
+    if (Number(chapter.id) === Number(chapterId)) {
       return "current-read-button"
     } else if (Number(chapter.id) > Number(book.book_progress)) {
       return "not-yet-read-button"
@@ -34,9 +34,9 @@ const ChapterBar = (props) => {
         )})}
         <div>
           <div className="chapter show-flex" onClick={handleGetQuiz}>
-            <div className={String(parseInt(book.directory.length)+1) === chapters.chapter.id
-                                      ? "chapter-status-button current-read-button"
-                                      : "chapter-status-button not-yet-read-button"}>
+            <div className={!chapterId
+                            ? "chapter-status-button current-read-button"
+                            : "chapter-status-button not-yet-read-button"}>
                                     
             </div>
             <div className="chapter-header">Quiz</div>

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { withRouter, useParams, useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import GreenAudioPlayer from 'green-audio-player';
-import { fetchGetChapter } from 'api/Action/Book/ChapterAction'
-import { fetchGetBook } from 'api/Action/Book/BookDirectoryAction'
+import { fetchChapter } from 'api/Action/Book/ChapterAction'
+import { fetchBook } from 'api/Action/Book/BookDirectoryAction'
 import Loading from 'components/Common/Loading';
 import history from '../../history';
 import ChapterBar from './ChapterBar';
@@ -25,20 +25,28 @@ const BookZoom = (props) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const getBookChapter = async () => {
-      setIsLoading(true);
-      const chapter = await dispatch(fetchGetChapter(book_id, chapter_id, token));
-      const book = await dispatch(fetchGetBook(book_id, token));
-      if (!!book || !!chapter) {
+  useEffect(() => { 
+    const getBook = async() => {
+      const book = await dispatch(fetchBook(book_id, token));
+      if (!!book) {
         setBook(book.data);
+      }
+    }
+    getBook()
+  }, [])
+
+  useEffect(() => {
+    const getChapter = async () => {
+      setIsLoading(true);
+      const chapter = await dispatch(fetchChapter(book_id, chapter_id, token));
+      if (!!chapter) {
         setChapterData(chapter.data);
       }
       setIsLoading(false);
     }
     
     if (chapter_id) {
-      getBookChapter()
+      getChapter()
       var chapter_progress = document.getElementById('chapter-progress-finished');
       chapter_progress.style.width = String((parseInt(book.book_progress)+1)/(book.directory.length)*100)+'%';
     }
@@ -46,17 +54,34 @@ const BookZoom = (props) => {
   }, [chapter_id, token, dispatch])
 
   useEffect (() => {
+    const handleNextChapter = () => {
+      if (chapterData.chapter.audio) {
+        var next_chapter_num = String(parseInt(chapter_id)+1);
+        
+      }
+      history.push(`./${next_chapter_num}`)
+    }
+
     if (!isLoading) {
-      new GreenAudioPlayer('.audio-bar');
+      if (chapter_id) {
+        new GreenAudioPlayer('.audio-bar');
+      }
+      
+      var audio = document.getElementById('audio')
+      if(audio) {
+        audio.addEventListener('ended', handleNextChapter)
+      }
     }
   }, [isLoading])
 
   const handleClickOutsideVolume = () => {
-    var volume_button = document.getElementsByClassName('volume__button').item(0);
-    var volume_controls = document.getElementsByClassName('volume__controls').item(0);
-    volume_button.classList.remove('open');
-    volume_button.setAttribute('aria-label','Open Volume Controls');
-    volume_controls.classList.add('hidden')
+    if (chapter_id) {
+      var volume_button = document.getElementsByClassName('volume__button').item(0);
+      var volume_controls = document.getElementsByClassName('volume__controls').item(0);
+      volume_button.classList.remove('open');
+      volume_button.setAttribute('aria-label','Open Volume Controls');
+      volume_controls.classList.add('hidden')
+    }
   }
 
   const handleClickChapter = () => {
@@ -99,7 +124,7 @@ const BookZoom = (props) => {
 
   const handleGetChapter = (e) => {
     const target_id = e.target.id.substring(4,5)
-    history.push(`./${target_id}`)
+    history.push(`/book/${book_id}/chapter/${target_id}`)
   };
 
   const handleGetQuiz = () => {
@@ -124,7 +149,7 @@ const BookZoom = (props) => {
       :<div>
         <div id="chapter-list-show" className="chapter-list-hide">
         <div id="chapter-list-container" className="show-flex" onScroll={handleScroll}>
-            <ChapterBar book={book} chapters={chapterData} handleGetChapter={handleGetChapter} handleGetQuiz={handleGetQuiz} />
+            <ChapterBar book={book} chapters={chapterData} handleGetChapter={handleGetChapter} handleGetQuiz={handleGetQuiz} chapterId={chapter_id}/>
             <div className="chapter-icon" onClick={handleClickChapter}></div>
           </div>
         </div>
@@ -159,8 +184,10 @@ const BookZoom = (props) => {
             
           </div>
         </div>
-
-        <BottomBar book={book} chapterData={chapterData} />
+        {chapter_id 
+        ? <BottomBar book={book} chapterData={chapterData} /> 
+        : undefined
+        }
       </div>
     }
   </div>

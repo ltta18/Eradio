@@ -1,13 +1,10 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
 
 const BottomBar = (props) => {
   const { chapterData, book } = props;
-  const params = useParams();
-  const { chapter_id } = params;
 
   return (
-    <div className={!chapter_id ? 'show-none' : undefined}>
+    <div>
       <div id="chapter-progress-bar">
         <div id="chapter-progress-finished"></div>
       </div>
@@ -16,8 +13,8 @@ const BottomBar = (props) => {
           {'Chương '+ String(parseInt(chapterData.chapter.id)+1) + '/' + book.directory.length}
         </div>
         <div className="audio-bar">
-          <audio crossOrigin="true">
-            <source src={chapterData.chapter.audio} type="audio/mpeg" autoPlay></source>
+          <audio id='audio' autoPlay>
+            <source src={chapterData.chapter.audio} type="audio/mpeg"></source>
           </audio>
         </div>
       </div>

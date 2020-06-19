@@ -1,46 +1,46 @@
 import axios from 'axios';
-import { FETCH_GET_CHAPTER_REQUEST,
-         FETCH_GET_CHAPTER_SUCCESS,
-         FETCH_GET_CHAPTER_FAILURE} from '../../Type';
+import { FETCH_CHAPTER_REQUEST,
+         FETCH_CHAPTER_SUCCESS,
+         FETCH_CHAPTER_FAILURE} from '../../Type';
 import { fetchLogOut } from '../User/AuthAction';
 import history from '../../../history';
 
-const fetchGetChapterSuccess = (chapter_content) => {
+const fetchChapterSuccess = (chapter_content) => {
   return {
-    type: FETCH_GET_CHAPTER_SUCCESS,
+    type: FETCH_CHAPTER_SUCCESS,
     payload: chapter_content
   }
 }
 
-const fetchGetChapterFailure = (error) => {
+const fetchChapterFailure = (error) => {
   return {
-    type: FETCH_GET_CHAPTER_FAILURE,
+    type: FETCH_CHAPTER_FAILURE,
     payload: error
   }
 }
 
-const fetchGetChapterRequest = () => {
+const fetchChapterRequest = () => {
   return {
-    type: FETCH_GET_CHAPTER_REQUEST
+    type: FETCH_CHAPTER_REQUEST
   }
 }
 
-export const fetchGetChapter = (book_id, chapter_id, token) => async (dispatch) => {
-  dispatch(fetchGetChapterRequest())
+export const fetchChapter = (book_id, chapter_id, token) => async (dispatch) => {
+  dispatch(fetchChapterRequest())
   try {
     const response = await axios.get('https://api.eradio.vn/book/'+book_id+'/chapter/'+chapter_id, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    dispatch(fetchGetChapterSuccess(response));
+    dispatch(fetchChapterSuccess(response));
     history.push(`/book/${book_id}/chapter/${chapter_id}`);
     return response;
 
   } catch (e) {
     const response = e.response;
     if (response) {
-      dispatch(fetchGetChapterFailure(response.status));
+      dispatch(fetchChapterFailure(response.status));
       await dispatch(fetchLogOut(token));
     }
   }

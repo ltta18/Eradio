@@ -1,44 +1,44 @@
 import axios from 'axios';
-import { FETCH_GET_LIBRARY_REQUEST,
-         FETCH_GET_LIBRARY_SUCCESS,
-         FETCH_GET_LIBRARY_FAILURE} from '../../Type';
+import { FETCH_LIBRARY_REQUEST,
+         FETCH_LIBRARY_SUCCESS,
+         FETCH_LIBRARY_FAILURE} from '../../Type';
 import { fetchLogOut } from '../User/AuthAction';
 
-const fetchGetLibrarySuccess = (library) => {
+const fetchLibrarySuccess = (library) => {
   return {
-    type: FETCH_GET_LIBRARY_SUCCESS,
+    type: FETCH_LIBRARY_SUCCESS,
     payload: library
   }
 }
 
-const fetchGetLibraryFailure = (error) => {
+const fetchLibraryFailure = (error) => {
   return {
-    type: FETCH_GET_LIBRARY_FAILURE,
+    type: FETCH_LIBRARY_FAILURE,
     payload: error
   }
 }
 
-const fetchGetLibraryRequest = () => {
+const fetchLibraryRequest = () => {
   return {
-    type: FETCH_GET_LIBRARY_REQUEST
+    type: FETCH_LIBRARY_REQUEST
   }
 }
 
-export const fetchGetLibrary = (token) => async (dispatch) => {
-  dispatch(fetchGetLibraryRequest())
+export const fetchLibrary = (token) => async (dispatch) => {
+  dispatch(fetchLibraryRequest())
   try {
     const response = await axios.get('https://api.eradio.vn/category/library', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    dispatch(fetchGetLibrarySuccess(response));
+    dispatch(fetchLibrarySuccess(response));
     return response;
     
   } catch (e) {
     const response = e.response;
     if (response) {
-      dispatch(fetchGetLibraryFailure(response.status));
+      dispatch(fetchLibraryFailure(response.status));
       await dispatch(fetchLogOut(token));
     }
   }

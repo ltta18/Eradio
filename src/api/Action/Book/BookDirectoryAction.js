@@ -1,44 +1,44 @@
 import axios from 'axios';
-import { FETCH_GET_BOOK_REQUEST,
-         FETCH_GET_BOOK_SUCCESS,
-         FETCH_GET_BOOK_FAILURE} from '../../Type';
+import { FETCH_BOOK_REQUEST,
+         FETCH_BOOK_SUCCESS,
+         FETCH_BOOK_FAILURE} from '../../Type';
 import { fetchLogOut } from '../User/AuthAction';
 
-const fetchGetBookSuccess = (book_data) => {
+const fetchBookSuccess = (book_data) => {
   return {
-    type: FETCH_GET_BOOK_SUCCESS,
+    type: FETCH_BOOK_SUCCESS,
     payload: book_data
   }
 }
 
-const fetchGetBookFailure = (error) => {
+const fetchBookFailure = (error) => {
   return {
-    type: FETCH_GET_BOOK_FAILURE,
+    type: FETCH_BOOK_FAILURE,
     payload: error
   }
 }
 
-const fetchGetBookRequest = () => {
+const fetchBookRequest = () => {
   return {
-    type: FETCH_GET_BOOK_REQUEST
+    type: FETCH_BOOK_REQUEST
   }
 }
 
-export const fetchGetBook = (book_id, token) => async (dispatch) => {
-  dispatch(fetchGetBookRequest())
+export const fetchBook = (book_id, token) => async (dispatch) => {
+  dispatch(fetchBookRequest())
   try {
     const response = await axios.get('https://api.eradio.vn/book/'+book_id, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-    dispatch(fetchGetBookSuccess(response));
+    dispatch(fetchBookSuccess(response));
     return response;
 
   } catch (e) {
     const response = e.response;
     if (response) {
-      dispatch(fetchGetBookFailure(response.status));
+      dispatch(fetchBookFailure(response.status));
       await dispatch(fetchLogOut(token));
     }
   }

@@ -7,28 +7,27 @@ import ListCategories from './Categories/ListCategories';
 import MarketingSales from './Library/MarketingSales';
 import Account from './User/Account';
 import Payment from './User/Payment';
-import { fetchGetUserDetail } from 'api/Action/User/UserDetailAction';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectAccessToken } from 'api/Reducer/AuthReducer';
+import { fetchUserDetail } from 'api/Action/User/UserDetailAction';
+import { selectUserDetail } from 'api/Reducer/UserReducer';
 
 var category = [{'icon':'img/sales.svg', 'name':'Marketing & Sales'}] 
 
 const Page = () => {
-  const [ name, setName ] = useState('')
+  const location = useLocation()
+  const dispatch = useDispatch()
 
-  const location = useLocation();
-  const dispatch = useDispatch();
   const token = useSelector(selectAccessToken)
+  const user = useSelector(selectUserDetail)
+  const [ name, setName ] = useState('')
+  
+  useEffect(() => {
+    setName(user.data.email.split('@')[0])
+  }, [user])
 
   useEffect(() => {
-    const getName = async() => { 
-      const user = await dispatch(fetchGetUserDetail(token))
-      if (user) {
-        setName(user.data.email.split('@')[0])
-      }
-    }
-
-    getName()
+      dispatch(fetchUserDetail(token))
   }, [dispatch, token])
 
   const handleClickOutsideSearch = () => {
@@ -49,6 +48,34 @@ const Page = () => {
     }
   }
 
+  const isHomePage = () => {
+    if (location.pathname === '/') {
+      return (
+        <div onClick={handleClickOutsideSearch}>
+          <Headline title="Xin chào, " name={name}/>
+          <ListCategories categories={category}/>
+        </div>
+      )
+    } 
+    else {
+      return (
+        <div>
+          <div id="discovery-dropdown-content" className={location.pathname === '/' ? '' : 'show-none'}>
+            <Headline title="Khám phá các chủ đề"/>
+            <ListCategories categories={category}/>
+          </div>
+          <div className="body-container" onClick={handleClickOutsideSearch}>
+            {location.pathname === '/components' 
+              ? <MarketingSales/> 
+              : location.pathname === '/account' 
+              ? <Account/> 
+              : <Payment />}
+        </div>
+      </div>
+      )
+    }
+  }
+
   return (
     <div>
       <div className="show-flex">
@@ -57,23 +84,7 @@ const Page = () => {
         </div>
         <ComponentsHeader/>
       </div>
-      {location.pathname === '/' 
-      ? <div onClick={handleClickOutsideSearch}>
-        <Headline title="Xin chào, " name={name} />
-        <ListCategories categories={category}/></div>
-      : [
-      <div id="discovery-dropdown-content" className={location.pathname === '/' ? '' : 'show-none'}>
-        <Headline title="Khám phá các chủ đề"/>
-        <ListCategories categories={category}/>
-      </div>,
-      <div className="body-container" onClick={handleClickOutsideSearch}>
-        {location.pathname === '/components' 
-          ? <MarketingSales/> 
-          : location.pathname === '/account' 
-          ? <Account/> 
-          : <Payment />}
-      </div>
-      ]}
+      {isHomePage()}
     </div>
   )
 }

@@ -1,42 +1,24 @@
-import { FETCH_SIGNIN_REQUEST, 
-         FETCH_SIGNIN_SUCCESS, 
-         FETCH_SIGNIN_FAILURE,
-         FETCH_LOGOUT_REQUEST,
-         FETCH_LOGOUT_SUCCESS, 
-         FETCH_LOGOUT_FAILURE,} from "../Type"
+import { FETCH_USER_DETAIL_REQUEST,
+         FETCH_USER_DETAIL_SUCCESS,
+         FETCH_USER_DETAIL_FAILURE } from '../Type';
 
 const initialState = {
-  access_token: '',
-  error: ''
+  user_detail: {},
+  error: '',
 }
 
-const auth_reducer = (state = initialState, action) => {
+const user_reducer = (state = initialState, action) => {
   switch (action.type) {
-    case FETCH_SIGNIN_REQUEST:
+    case FETCH_USER_DETAIL_REQUEST:
       return {
         ...state,
       }
-    case FETCH_SIGNIN_SUCCESS:
+    case FETCH_USER_DETAIL_SUCCESS:
       return {
         ...state,
-        access_token: action.payload.data.auth_token,
+        user_detail: action.payload,
       }
-    case FETCH_SIGNIN_FAILURE:
-      return {
-        ...state,
-        error: action.payload,
-      }
-    case FETCH_LOGOUT_REQUEST:
-      return {
-        ...state,
-      }
-    case FETCH_LOGOUT_SUCCESS:
-      return {
-        ...state,
-        access_token: '',
-        error: '',
-      }
-    case FETCH_LOGOUT_FAILURE:
+    case FETCH_USER_DETAIL_FAILURE:
       return {
         ...state,
         error: action.payload,
@@ -45,4 +27,5 @@ const auth_reducer = (state = initialState, action) => {
   }
 }
 
-export default auth_reducer;
+export default user_reducer;
+export const selectUserDetail = state => state.user_reducer.user_detail

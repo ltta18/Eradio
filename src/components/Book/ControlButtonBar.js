@@ -17,11 +17,8 @@ const ControlButtonBar = (props) => {
   }
 
   const handleSubmitQuiz = () => {
-    // const answerSet = JSON.parse(localStorage.getItem('answerSet'))
-    // if (Object.keys(answerSet).length === 5) {
       console.log(book)
       history.push(`/book/result`)
-    // }
   }
 
   const handleReturnLibrary = () => {

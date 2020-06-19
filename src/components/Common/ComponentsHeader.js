@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchLogOut } from '../../api/Action/User/AuthAction';
 import { fetchSearch } from '../../api/Action/Categories/SearchAction';
 import history from '../../history';
-import { fetchGetBook } from 'api/Action/Book/BookDirectoryAction';
+import { fetchBook } from 'api/Action/Book/BookDirectoryAction';
 import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
 const ComponentsHeader = (props) => {
@@ -47,7 +47,7 @@ const ComponentsHeader = (props) => {
 
   const handleClickBookSearch = async(e) => {
     var book_id = e.target.classList[1].split('-')[1] 
-    const book = await dispatch(fetchGetBook(book_id, token))
+    const book = await dispatch(fetchBook(book_id, token))
     var progress = book.data.book_progress-1
     if (progress < 0) {
       progress = 0

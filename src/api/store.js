@@ -1,6 +1,7 @@
 import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
 import auth_reducer from './Reducer/AuthReducer';
+import user_reducer from './Reducer/UserReducer';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
@@ -12,14 +13,14 @@ const composeEnhancers =
     }) : compose;
 
 const persistConfig = {
-  key: 'authType',
+  key: 'root',
   storage: storage,
-  whitelist:['auth_reducer']
+  // whitelist:['auth_reducer', 'user_reducer']
 };
 
-const persisted_reducer = persistReducer(persistConfig, combineReducers({auth_reducer}));
+const persistedReducer = persistReducer(persistConfig, combineReducers({auth_reducer, user_reducer}));
 
-const store = createStore(persisted_reducer, composeEnhancers(applyMiddleware(thunk)));
+const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(thunk)));
 
 export default store;
 export const persistor = persistStore(store)

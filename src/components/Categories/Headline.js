@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const Headline = (props) => {
   return (
     <div id="headline-container">
@@ -8,7 +7,6 @@ const Headline = (props) => {
     </div>
   )
 }
-
 
 export default Headline;
 

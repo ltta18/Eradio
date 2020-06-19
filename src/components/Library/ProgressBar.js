@@ -2,7 +2,7 @@ import React from 'react';
 import { Doughnut, Chart } from 'react-chartjs-2';
 
 class ProgressBar extends React.Component {
-    componentWillMount() {
+    render() {
         Chart.controllers.doughnut = Chart.controllers.doughnut.extend({
             draw: function(ease) {
                 var ctx           = this.chart.ctx;
@@ -115,9 +115,7 @@ class ProgressBar extends React.Component {
                 });
             }
         });
-    }
 
-    render() {
         const { progress } = this.props
         const graphOptions = {
             type   : 'RoundedDoughnut',
@@ -153,8 +151,8 @@ class ProgressBar extends React.Component {
                     }
                 },
             },
-            width: "100px",
-            height: "100px",
+            width: 100,
+            height: 100,
         };
 
         return (

@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchGetUserDetail } from 'api/Action/User/UserDetailAction';
+import { fetchUserDetail } from 'api/Action/User/UserDetailAction';
 import Loading from 'components/Common/Loading';
 import { selectAccessToken } from 'api/Reducer/AuthReducer';
 
-const Account = (props) => {
+const Account = () => {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ detail, setDetail ] = useState({email: '', type_account: '', registered_on: '', exp: ''})
   const dispatch = useDispatch();
@@ -13,7 +13,7 @@ const Account = (props) => {
   useEffect (() => {
     const getUserDetail = async() => {
       setIsLoading(true)
-      const user_detail = await dispatch(fetchGetUserDetail(token));
+      const user_detail = await dispatch(fetchUserDetail(token));
       if (user_detail) {
         setDetail(user_detail.data);
        }

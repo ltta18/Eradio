@@ -55,20 +55,12 @@ export const fetchSignIn = (email, password) => async (dispatch) => {
       password: password
     })
     dispatch(fetchSignInSuccess(response));
-    history.push('/');
+    history.push('/')
     
   } catch (e) {
     const response = e.response;
     if (response) {
       dispatch(fetchSignInFailure(response.status));
-
-      
-      
-      // var email_container = document.getElementById('email-container');
-      // email_container.style.borderColor = '#cc0000';
-
-      // var password_container = document.getElementById('password-container');
-      // password_container.style.borderColor = '#cc0000';
     }
   }
 };
