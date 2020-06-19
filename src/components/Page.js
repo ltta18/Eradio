@@ -23,26 +23,31 @@ const Page = () => {
   useEffect(() => {
     const getUserDetail = async() => {
       const user = await dispatch(fetchUserDetail(token))
-      setName(user.data.email.split('@')[0])
+      if (user) {
+        setName(user.data.email.split('@')[0])
+      }
     }
     getUserDetail()
-  }, [])
+  }, [dispatch, token])
 
   const handleClickOutsideSearch = () => {
     var search = document.getElementById('search');
     var friend_dropdown = document.getElementsByClassName('friend-dropdown-content-container');
-    var dropdown = document.getElementsByClassName('dropdown');
     var dropdown_icon = document.getElementsByClassName('dropdown-icon');
     var category_dropdown = document.getElementById('discovery-dropdown-content')
     search.classList.remove('show-flex');
     search.classList.add('show-none');
     friend_dropdown.item(0).style.display = 'none';
-    for (var i=0; i<dropdown.length; i++) {
-      dropdown.item(i).classList.add('show-flex');
-      dropdown.item(i).classList.remove('show-none');
-      dropdown_icon.item(i).classList.add('show-flex');
-      dropdown_icon.item(i).classList.remove('show-none');
-      category_dropdown.classList.remove('show')
+    if (location.pathname === '/') {
+      dropdown_icon.item(1).classList.add('show-flex')
+      dropdown_icon.item(1).classList.remove('show-none')
+    }
+    else {
+      for (var i=0; i<dropdown_icon.length; i++) {
+        dropdown_icon.item(i).classList.add('show-flex')
+        dropdown_icon.item(i).classList.remove('show-none')
+        category_dropdown.classList.remove('show')
+      }
     }
   }
 
@@ -64,9 +69,9 @@ const Page = () => {
           </div>
           <div className="body-container" onClick={handleClickOutsideSearch}>
             {location.pathname === '/components' 
-              ? <MarketingSales/> 
+              ? <MarketingSales /> 
               : location.pathname === '/account' 
-              ? <Account/> 
+              ? <Account /> 
               : <Payment />}
         </div>
       </div>

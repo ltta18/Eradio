@@ -33,7 +33,7 @@ const BookZoom = (props) => {
       }
     }
     getBook()
-  }, [])
+  }, [dispatch, token, book_id])
 
   useEffect(() => {
     const getChapter = async () => {

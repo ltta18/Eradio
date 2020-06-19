@@ -12,7 +12,7 @@ const Frame = (props) => {
   const [retypePassword, setRetypePassword] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [isCheckedBox, setIsCheckedBox] = useState(false);
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -36,11 +36,11 @@ const Frame = (props) => {
     var button = document.getElementById('remember');
     if (button.checked === false) {
       button.checked = 'checked';
-      if (props.checkbox_message !== "Nhớ tài khoản của tôi") setIsLoading(false);
+      if (props.checkbox_message !== "Nhớ tài khoản của tôi") setIsCheckedBox(false);
     }
     else {
       button.checked = '';
-      if (props.checkbox_message !== "Nhớ tài khoản của tôi") setIsLoading(true);
+      if (props.checkbox_message !== "Nhớ tài khoản của tôi") setIsCheckedBox(true);
     }
   }
 
@@ -49,12 +49,10 @@ const Frame = (props) => {
     var { isValid: valid } = isValid();
 
     if (valid) {
-      setIsLoading(true);
       if (location.pathname === '/signin') {
         await dispatch(fetchSignIn(email, password));
       }
       else await dispatch(fetchSignUp(email, password));
-      setIsLoading(false);
     }
     else {
       var error = document.getElementById('error');
@@ -113,7 +111,7 @@ const Frame = (props) => {
                 <input type="checkbox" id="remember" name="remember" className="checkbox"></input><span className="signin-signup-frame-new-checkbox" onClick={handleClick}></span>
                 <label htmlFor="remember" className="small-text checkbox-text">{props.checkbox_message}</label>            
               </div>
-              <button className={"grey-18-normal-text orange-button "+ signup_margin_reduced + verify_hide_inputs} disabled={isLoading}><span className="signin-signup-button">{props.submit_message}</span></button>
+              <button className={"grey-18-normal-text orange-button "+ signup_margin_reduced + verify_hide_inputs} disabled={isCheckedBox}><span className="signin-signup-button">{props.submit_message}</span></button>
             </form>
 
             <div className={"grey-18-normal-text orange-button " + verify_message_show} onClick={handleGoSignIn}><span className="signin-signup-button" >Quay lại trang Đăng nhập</span></div>

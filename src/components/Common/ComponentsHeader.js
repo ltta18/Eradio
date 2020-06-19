@@ -124,10 +124,9 @@ const ComponentsHeader = (props) => {
             : ''}
           
         </div>
-        {location.pathname === '/components'
-        ? 
-          <div id="discovery-dropdown-icon" className="dropdown-icon" onClick={handleClickDiscoveryDropdown}></div>
-        : <div id="discovery-dropdown-icon" className="dropdown-icon hidden" onClick={handleClickDiscoveryDropdown}></div>
+        {location.pathname === '/'
+        ? <div id="discovery-dropdown-icon" className="dropdown-icon hidden" onClick={handleClickDiscoveryDropdown}></div>
+        : <div id="discovery-dropdown-icon" className="dropdown-icon" onClick={handleClickDiscoveryDropdown}></div>
         }
         <div style={{'margin': 'auto 0'}}>
           <div id="friend-dropdown-icon" className="dropdown-icon" onClick={handleClickFriendDropdown}>

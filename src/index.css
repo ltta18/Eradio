@@ -6,7 +6,11 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
   font-family: 'Open Sans';
+  min-height: 100%;
+}
 
+html {
+  min-height: 100%;
 }
 
 code {

@@ -4,7 +4,7 @@ import history from '../../history';
 
 const Category = (props) => {
   
-  const onClick = (e) => {
+  const onClick = () => {
     history.push('/components');
   }
 

@@ -153,6 +153,7 @@
   background: url(../img/glass_black.svg) no-repeat;
   width: 1.2rem;
   height: 1.2rem;
+  flex-shrink: 0;
   margin: auto 0 auto 10px;
   cursor: pointer;
   }
