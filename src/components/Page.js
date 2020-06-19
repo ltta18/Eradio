@@ -10,7 +10,6 @@ import Payment from './User/Payment';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAccessToken } from 'api/Reducer/AuthReducer';
 import { fetchUserDetail } from 'api/Action/User/UserDetailAction';
-import { selectUserDetail } from 'api/Reducer/UserReducer';
 
 var category = [{'icon':'img/sales.svg', 'name':'Marketing & Sales'}] 
 
@@ -19,16 +18,15 @@ const Page = () => {
   const dispatch = useDispatch()
 
   const token = useSelector(selectAccessToken)
-  const user = useSelector(selectUserDetail)
   const [ name, setName ] = useState('')
   
   useEffect(() => {
-    setName(user.data.email.split('@')[0])
-  }, [user])
-
-  useEffect(() => {
-      dispatch(fetchUserDetail(token))
-  }, [dispatch, token])
+    const getUserDetail = async() => {
+      const user = await dispatch(fetchUserDetail(token))
+      setName(user.data.email.split('@')[0])
+    }
+    getUserDetail()
+  }, [])
 
   const handleClickOutsideSearch = () => {
     var search = document.getElementById('search');

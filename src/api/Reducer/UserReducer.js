@@ -28,4 +28,3 @@ const user_reducer = (state = initialState, action) => {
 }
 
 export default user_reducer;
-export const selectUserDetail = state => state.user_reducer.user_detail

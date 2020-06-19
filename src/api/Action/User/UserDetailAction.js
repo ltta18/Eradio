@@ -35,6 +35,7 @@ export const fetchUserDetail = (token) => async (dispatch) => {
       },
     })
     dispatch(fetchUserDetailSuccess(response));
+    return response
 
   } catch (e) {
     const response = e.response;
