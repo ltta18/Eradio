@@ -180,7 +180,7 @@ const BookZoom = (props) => {
               }
             </div>
 
-            <ControlButtonBar book={book} chapterData={chapterData} chapter_id={chapter_id} handleGetQuiz={handleGetQuiz}/>
+            <ControlButtonBar book={book} chapter_id={chapter_id} book_id={book_id} handleGetQuiz={handleGetQuiz}/>
             
           </div>
         </div>

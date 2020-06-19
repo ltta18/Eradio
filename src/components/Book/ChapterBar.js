@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ChapterBar = (props) => {
-  const { book, chapters, handleGetChapter, handleGetQuiz, chapterId } = props;
+  const { book, handleGetChapter, handleGetQuiz, chapterId } = props;
 
   const getIconClass = (chapter) => {
     if (Number(chapter.id) === Number(chapterId)) {

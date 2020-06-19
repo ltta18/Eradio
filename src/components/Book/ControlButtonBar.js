@@ -3,22 +3,21 @@ import history from '../../history';
 import { useLocation } from 'react-router-dom';
 
 const ControlButtonBar = (props) => {
-  const { chapter_id, chapterData, book, handleGetQuiz } = props
+  const { chapter_id, book, handleGetQuiz, book_id } = props
   const location = useLocation()
 
   const handleBackButton = () => {
-    var previous_chapter_num = String(parseInt(chapterData.chapter.id)-1);
+    var previous_chapter_num = String(parseInt(chapter_id)-1);
     history.push(`./${previous_chapter_num}`)
   }
 
   const handleNextButton = () => {
-    var next_chapter_num = String(parseInt(chapterData.chapter.id)+1);
+    var next_chapter_num = String(parseInt(chapter_id)+1);
     history.push(`./${next_chapter_num}`)
   }
 
   const handleSubmitQuiz = () => {
-      console.log(book)
-      history.push(`/book/result`)
+      history.push(`/book/result/${book_id}`)
   }
 
   const handleReturnLibrary = () => {
@@ -26,7 +25,10 @@ const ControlButtonBar = (props) => {
   }
 
   const isFirstChapter = () => {
-    if (chapterData.chapter.id !== String(0)) {
+    if (false) {
+      console.log('hi')
+    }
+    else if (chapter_id !== String(0)) {
       return (
         <div id="back-button" className="small-text show-flex" onClick={handleBackButton}>
           <div id="back-button-icon"></div>Chương trước
@@ -36,13 +38,13 @@ const ControlButtonBar = (props) => {
   }
 
   const isLastChapter = () => {
-    if (chapterData.chapter.id !== String(parseInt(book.directory.length)-1)) {
+    if (chapter_id !== String(parseInt(book.directory.length)-1)) {
       return (
         <div id="next-button" className="small-text show-flex" onClick={handleNextButton}>
           Chương sau<div id="next-button-icon"></div>
         </div>
       )
-    } else if (chapterData.chapter.id !== String(book.directory.length)) {
+    } else if (chapter_id !== String(book.directory.length)) {
       return (
         <div id="next-button" className="small-text show-flex" onClick={handleGetQuiz}>
           Quiz<div id="next-button-icon"></div>
@@ -70,7 +72,7 @@ const ControlButtonBar = (props) => {
   }
 
   return (
-    chapter_id
+    chapter_id || !book_id
     ? <div id="chapter-control-button" className="show-flex">
         {isFirstChapter()}
         {isLastChapter()}

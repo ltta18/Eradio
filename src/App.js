@@ -52,7 +52,7 @@ const routes = [
   {
     name: 'result-route',
     component: BookZoom,
-    path: '/book/result',
+    path: '/book/result/:book_id',
     protected: true,
   },
 
