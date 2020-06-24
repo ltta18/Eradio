@@ -38,7 +38,7 @@
   }
 
   #book-zoom-menu-bar {
-    width: 80% !important;
+    width: 85% !important;
     display: flex;
     flex-direction: row;
     margin-left: 1.7rem;
@@ -64,11 +64,11 @@
   }
 
   #next-button {
-    margin-right: 10px;
+    margin-right: 20px;
   }
 
   #back-button {
-    margin-left: 10px;
+    margin-left: 20px;
   }
 }
 
@@ -148,6 +148,11 @@
   font-size: 0.85rem;
   font-style: italic;
 }
+
+
+
+
+
 /* MarketingSales.js - Banner */
 .banner {
   width: 50%;
@@ -164,6 +169,10 @@
   color: #F58732;
   border-color: #F58732 !important;
 }
+
+
+
+
 
 /* MarketingSales.js - Dropdown */
 #friend-dropdown-icon {
@@ -186,10 +195,30 @@
   width: 100px;
 }
 
+.discovery-dropdown-content-show {
+  opacity: 1;
+  height: calc(100% + 150px);
+  -o-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.2s;
+}
+
+.discovery-dropdown-content-hide {
+  opacity: 0;
+  height: 0;
+  -o-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.2s;
+}
+
 .friend-dropdown-content-container {
   display: none;
   position: absolute;
-  right: 7%;
+  right: 5%;
   background-color: #f9f9f9;
   margin-top: 40px;
   min-width: 210px;
@@ -211,6 +240,9 @@
   color: #F58732;
 }
 
+
+
+
 /* Book.js  */
 
 .book {
@@ -222,7 +254,8 @@
 .book-cover {
   width: 100%;
   height: auto;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .book-tag-content {
@@ -291,7 +324,7 @@
 
 .read-button {
   border-top: 1.5px solid rgba(0, 0, 0, 0.25);
-  padding-top: 4%;
+  padding-top: 5%;
   padding-bottom: 5%;
   margin-top: auto;
 }
@@ -313,6 +346,10 @@
   color: #1775FC;
 }
 
+
+
+
+
 /* ListBook.js */
 
 .list-book {
@@ -324,7 +361,35 @@
   justify-content: center;
 }
 
+
+
+
+
 /* BookZoom.js */
+
+/* Custom scrollbar */
+/* ::-webkit-scrollbar {
+  
+  display: none;
+}
+
+.scroll {
+  position: absolute;
+  right: 0px;
+  width: auto;
+}
+
+::-webkit-scrollbar-thumb {
+  background: lightgrey; 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+  background: lightgrey; 
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+} */
+
 .book-zoom-body-left-open {
   position: fixed;
 }
@@ -335,13 +400,14 @@
 }
 
 .chapter-list-hide {
+  position: fixed;
+  opacity: 0;
   width: 0px;
-  height: 0px;
-  -o-transition: 0.2s;
-  -ms-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -webkit-transition: 0.2s;
-  transition: all ease 0.2s;
+  -o-transition: all ease 0.3s;
+  -ms-transition: all ease 0.3s;
+  -moz-transition: all ease 0.3s;
+  -webkit-transition: all ease 0.3s;
+  transition: all ease 0.3s;
 
 }
 
@@ -356,11 +422,11 @@
   background: white;
   overflow: hidden;
   z-index: 3;
-  -o-transition: 0.2s;
-  -ms-transition: 0.2s;
-  -moz-transition: 0.2s;
-  -webkit-transition: 0.2s;
-  transition: all linear 0.2s;
+  -o-transition: width linear 0.2s;
+  -ms-transition: width linear 0.2s;
+  -moz-transition: width linear 0.2s;
+  -webkit-transition: width linear 0.2s;
+  transition: width linear 0.2s;
 }
 
 #chapter-list-container {
@@ -383,6 +449,7 @@
 #chapter-list {
   display: table;
   width: 90%;
+  height: 100%;
   padding-top: 65px;
   border-right: 2px solid rgba(0, 0, 0, 0.1);
 }
@@ -398,7 +465,7 @@
   width: 2px;
   height: 100%;
   top: 80px;
-  margin-left: 40px;
+  margin-left: 20.5px;
   z-index: 2;
   
   background: rgba(0, 0, 0, 0.1);
@@ -415,31 +482,25 @@
 }
 
 .chapter-icon {
+  flex-shrink: 0;
   background: url('../img/chapter-icon.svg') no-repeat;
-  width: 2.3rem;
+  width: 2rem;
   height: 2rem;
-  margin-left: 0.7rem;
-  margin-right: 0.2rem;
+  margin-left: 1.1rem;
+  margin-right: 0.5rem;
   margin-top: 65px;
   cursor: pointer;
 }
-
-/* .chapter-icon:hover, #chapter-list-show {
-  
-} */
 
 #house-icon {
   background: url('../img/house-icon.svg') no-repeat;
   width: 2rem;
   height: 2rem;
-  margin-left: 0.7rem;
+  margin-left: 1.1rem;
   margin-top: 20px;
   cursor: pointer;
 }
 
-.chapter {
-  /* padding-bottom: 20px; */
-}
 
 .chapter-header {
   height: auto;
@@ -450,7 +511,7 @@
 .chapter-status-button {
   width: 25px;
   height: 24px;
-  margin: 0 10px auto 29px;
+  margin: 0px 10px auto 10px;
   padding-top: 0;
   padding-bottom: 0 !important;
   border: none;
@@ -541,6 +602,10 @@
   margin: auto 0 auto 13px;
 }
 
+
+
+
+
 /* BookZoom.js - Audio Player */
 #chapter-progress-bar {
   position: fixed;
@@ -605,4 +670,9 @@
 .quiz-button { 
   margin: 30px auto; 
   width: 50%;
+}
+
+.possible-answer {
+  width: 85%; 
+  margin: auto 0;
 }

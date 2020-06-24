@@ -1,34 +1,48 @@
 import React from 'react';
 import history from '../../history';
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAccessToken } from 'api/Reducer/AuthReducer';
+import { fetchBook } from 'api/Action/Book/BookDirectoryAction';
 
 const ControlButtonBar = (props) => {
   const { chapter_id, book, handleGetQuiz, book_id } = props
   const location = useLocation()
+  const dispatch = useDispatch()
+  const token = useSelector(selectAccessToken)
 
   const handleBackButton = () => {
-    var previous_chapter_num = String(parseInt(chapter_id)-1);
-    history.push(`./${previous_chapter_num}`)
+    if (chapter_id) {
+      var previousChapter = String(parseInt(chapter_id)-1);
+      history.push(`./${previousChapter}`)
+    }
+    else {
+      var lastChapter = String(parseInt(book.directory.length)-1)
+      history.push(`/book/${book_id}/chapter/${lastChapter}`)
+    }
   }
 
   const handleNextButton = () => {
-    var next_chapter_num = String(parseInt(chapter_id)+1);
-    history.push(`./${next_chapter_num}`)
+    var nextChapterId = String(parseInt(chapter_id)+1);
+    history.push(`./${nextChapterId}`)
   }
 
   const handleSubmitQuiz = () => {
       history.push(`/book/result/${book_id}`)
   }
 
-  const handleReturnLibrary = () => {
-    history.push('/components')
+  const handleGetBook = async() => {
+    var nextBookId = String(parseInt(book_id)+1)
+    const book = await dispatch(fetchBook(nextBookId, token))
+    if (book) {
+      const currentChapter = book.data.book_progress
+      history.push(`/book/${nextBookId}/chapter/${currentChapter}`)
+    }
+    
   }
 
   const isFirstChapter = () => {
-    if (false) {
-      console.log('hi')
-    }
-    else if (chapter_id !== String(0)) {
+    if (chapter_id !== String(0)) {
       return (
         <div id="back-button" className="small-text show-flex" onClick={handleBackButton}>
           <div id="back-button-icon"></div>Chương trước
@@ -38,46 +52,35 @@ const ControlButtonBar = (props) => {
   }
 
   const isLastChapter = () => {
-    if (chapter_id !== String(parseInt(book.directory.length)-1)) {
-      return (
-        <div id="next-button" className="small-text show-flex" onClick={handleNextButton}>
-          Chương sau<div id="next-button-icon"></div>
-        </div>
-      )
+    var content;
+    var method;
+    if (!chapter_id) {
+      content = 'Sách tiếp theo';
+      method = handleGetBook
+    }
+    else if (chapter_id !== String(parseInt(book.directory.length)-1)) {
+      content = 'Chương sau';
+      method = handleNextButton
     } else if (chapter_id !== String(book.directory.length)) {
-      return (
-        <div id="next-button" className="small-text show-flex" onClick={handleGetQuiz}>
-          Quiz<div id="next-button-icon"></div>
-        </div>
-      )
-    }
-  }
-
-  const isQuizPage = () => {
-    var message
-    var method
-    if (location.pathname.split('/')[2] === 'question') {
-      message = 'Hoàn thành'
-      method = handleSubmitQuiz
-    }
-    else {
-      message = 'Quay lại Trang chủ'
-      method = handleReturnLibrary
+      content = 'Quiz';
+      method = handleGetQuiz
     }
     return (
-      <div className={"grey-18-normal-text orange-button quiz-button"} onClick={method}>
-        <span className="signin-signup-button" >{message}</span>
+      <div id="next-button" className="small-text show-flex" onClick={method}>
+        {content}<div id="next-button-icon"></div>
       </div>
     )
   }
 
   return (
-    chapter_id || !book_id
+    location.pathname.split('/')[2] !== 'question'
     ? <div id="chapter-control-button" className="show-flex">
         {isFirstChapter()}
         {isLastChapter()}
       </div>
-    : isQuizPage()
+    : <div className={"grey-18-normal-text orange-button quiz-button"} onClick={handleSubmitQuiz}>
+        <span className="signin-signup-button" >Hoàn thành</span>
+      </div>
   )
 }
 

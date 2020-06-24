@@ -10,6 +10,7 @@ import Payment from './User/Payment';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectAccessToken } from 'api/Reducer/AuthReducer';
 import { fetchUserDetail } from 'api/Action/User/UserDetailAction';
+import Admin from './Admin/Admin';
 
 var category = [{'icon':'img/sales.svg', 'name':'Marketing & Sales'}] 
 
@@ -51,6 +52,21 @@ const Page = () => {
     }
   }
 
+  const getBodyContent = () => {
+    if (location.pathname === '/components') {
+      return <MarketingSales /> 
+    }
+    else if (location.pathname === '/account') {
+      return <Account /> 
+    }
+    else if (location.pathname === '/admin') {
+      return <Admin />
+    }
+    else if (location.pathname === '/payment') {
+      return <Payment />
+    }
+  }
+
   const isHomePage = () => {
     if (location.pathname === '/') {
       return (
@@ -62,17 +78,13 @@ const Page = () => {
     } 
     else {
       return (
-        <div>
+        <div id="body" style={{height: 'calc(100% - 80px)'}}>
           <div id="discovery-dropdown-content" className={location.pathname === '/' ? '' : 'show-none'}>
             <Headline title="Khám phá các chủ đề"/>
             <ListCategories categories={category}/>
           </div>
           <div className="body-container" onClick={handleClickOutsideSearch}>
-            {location.pathname === '/components' 
-              ? <MarketingSales /> 
-              : location.pathname === '/account' 
-              ? <Account /> 
-              : <Payment />}
+            {getBodyContent()}
         </div>
       </div>
       )
@@ -80,8 +92,8 @@ const Page = () => {
   }
 
   return (
-    <div>
-      <div className="show-flex">
+    <div style={{height: '100vh'}}>
+      <div id="header" className="show-flex">
         <div className="header-container">
           <Header />
         </div>

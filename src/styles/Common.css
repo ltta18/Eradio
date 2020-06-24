@@ -85,10 +85,9 @@
 }
 
 .body-container {
-  padding-right: 10%;
-  padding-left: 10%;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  min-height: 100%;
+  padding-right: 5%;
+  padding-left: 5%;
+  height: 100%;
 }
 
 .loading-page {

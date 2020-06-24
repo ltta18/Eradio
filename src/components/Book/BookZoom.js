@@ -25,33 +25,27 @@ const BookZoom = (props) => {
 
   const dispatch = useDispatch();
 
-  useEffect(() => { 
-    const getBook = async() => {
-      const book = await dispatch(fetchBook(book_id, token));
-      if (!!book) {
-        setBook(book.data);
-      }
-    }
-    getBook()
-  }, [dispatch, token, book_id])
-
   useEffect(() => {
     const getChapter = async () => {
       setIsLoading(true);
       const chapter = await dispatch(fetchChapter(book_id, chapter_id, token));
+      const book = await dispatch(fetchBook(book_id, token));
+      if (!!book) {
+        setBook(book.data);
+      }
       if (!!chapter) {
         setChapterData(chapter.data);
       }
       setIsLoading(false);
     }
     
+    getChapter()
+    
     if (chapter_id) {
-      getChapter()
       var chapter_progress = document.getElementById('chapter-progress-finished');
       chapter_progress.style.width = String((parseInt(book.book_progress)+1)/(book.directory.length)*100)+'%';
     }
-
-  }, [chapter_id, token, dispatch])
+  }, [dispatch, book_id, chapter_id, token])
 
   useEffect (() => {
     const handleNextChapter = () => {
@@ -86,10 +80,11 @@ const BookZoom = (props) => {
 
   const handleClickChapter = () => {
     var chapter_list = document.getElementById('chapter-list-show');
-    var progress_line = document.getElementById('chapter-list-progress-line')
+    var progress_line = document.getElementById('chapter-list-progress-line');
     var filter = document.getElementById('filter');
     var outside_chapter_list = document.getElementById('book-zoom-body');
-    var chapter_list_container =document.getElementById('chapter-list-container');
+    var chapter_list_container = document.getElementById('chapter-list-container');
+
     if (chapter_list.classList.contains('chapter-list-hide')) {
       chapter_list.setAttribute('class','chapter-list-show');
       progress_line.style.position = 'fixed';
@@ -110,10 +105,11 @@ const BookZoom = (props) => {
   }
 
   const handleClickOutsideChapterList = () => {
-    var chapter_list = document.getElementById('chapter-list-show');
-    var filter = document.getElementById('filter');
-    var outside_chapter_list = document.getElementById('book-zoom-body');
-    var progress_line = document.getElementById('chapter-list-progress-line')
+    const chapter_list = document.getElementById('chapter-list-show');
+    const filter = document.getElementById('filter');
+    const outside_chapter_list = document.getElementById('book-zoom-body');
+    const progress_line = document.getElementById('chapter-list-progress-line')
+
     chapter_list.style.position = '';
     chapter_list.setAttribute('class','chapter-list-hide');
     filter.classList.add('show-none');
@@ -125,6 +121,7 @@ const BookZoom = (props) => {
   const handleGetChapter = (e) => {
     const target_id = e.target.id.substring(4,5)
     history.push(`/book/${book_id}/chapter/${target_id}`)
+    handleClickOutsideChapterList()
   };
 
   const handleGetQuiz = () => {
@@ -135,10 +132,10 @@ const BookZoom = (props) => {
   const handleScroll = (e) => {
     var progress_line = document.getElementById('chapter-list-progress-line');
     var scroll_position = document.getElementById('chapter-list-container').scrollTop
-    if (scroll_position >= 65) {
+    if (scroll_position >= 80) {
       progress_line.style.top = '0px';
     } else {
-      progress_line.style.top = '65px';
+      progress_line.style.top = '80px';
     }
   };
   

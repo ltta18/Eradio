@@ -84,11 +84,35 @@ const routes = [
     path: '/payment',
     protected: true,
   }, 
+
+  {
+    name: 'admin-route',
+    component: Page,
+    path: '/admin',
+    protected: true,
+  },
 ]
 
 const App = () => {
   const accessToken = useSelector(selectAccessToken);
   const defaultRoute = accessToken ? '/' : '/signin';
+
+  (function(timer) {
+    window.addEventListener('load', function() {
+      var el = document.querySelector('#body');
+      if (el) {
+        el.addEventListener('scroll', function(e) {
+          (function(el){
+            el.classList.add('scroll');
+            clearTimeout(timer);
+            timer = setTimeout(function() {
+              el.classList.remove('scroll');
+            }, 500);   
+          })(el);
+        })
+      }
+    })
+  })();  
 
   return  (
     <Router history={history}>

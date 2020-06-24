@@ -6,11 +6,40 @@ body {
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
   font-family: 'Open Sans';
-  min-height: 100%;
+  overflow-y: hidden;
 }
 
-html {
-  min-height: 100%;
+#body {
+  overflow-y: overlay;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+  color: rgba(0, 0, 0, 0);
+  opacity: 0;
+  -webkit-transition: all ease 2s;
+  transition: all ease 2s;
+}
+
+.scroll::-webkit-scrollbar {
+  width: 16px;
+  opacity: 1;
+  -webkit-transition: all ease 2s;
+  transition: all ease 2s;
+}
+
+.scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.scroll::-webkit-scrollbar-thumb {
+  background: #bfbfbf;
+}
+
+/* Handle on hover */
+.scroll::-webkit-scrollbar-thumb:hover {
+  background: #888; 
 }
 
 code {

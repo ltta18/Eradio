@@ -57,13 +57,11 @@ const ComponentsHeader = (props) => {
 
   const handleClickDiscoveryDropdown = () => {
     var discovery_dropdown_content = document.getElementById('discovery-dropdown-content');
-    if (discovery_dropdown_content.classList.contains("show")) {
-      discovery_dropdown_content.classList.remove("show");
-      discovery_dropdown_content.classList.add("show-none");
+    if (discovery_dropdown_content.classList.contains("discovery-dropdown-content-show")) {
+      discovery_dropdown_content.setAttribute('class', 'discovery-dropdown-content-hide');
     }
     else {
-      discovery_dropdown_content.classList.remove("show-none");
-      discovery_dropdown_content.classList.add("show");
+      discovery_dropdown_content.setAttribute('class', 'discovery-dropdown-content-show');
     }
 
     // close friend dropdown
@@ -85,11 +83,14 @@ const ComponentsHeader = (props) => {
     // close discovery dropdown
     var discovery_dropdown_content = document.getElementById('discovery-dropdown-content');
     if (discovery_dropdown_content) {
-      if (discovery_dropdown_content.classList.contains("show")) {
-        discovery_dropdown_content.classList.remove("show");
-        discovery_dropdown_content.classList.add("show-none");
+      if (discovery_dropdown_content.classList.contains("discovery-dropdown-content-show")) {
+        discovery_dropdown_content.setAttribute('class', 'discovery-dropdown-content-hide')
       }
     }
+  }
+
+  const handleToAdmin = () => {
+    history.push('/admin')
   }
 
   const handleToAccount = () => {
@@ -131,6 +132,7 @@ const ComponentsHeader = (props) => {
         <div style={{'margin': 'auto 0'}}>
           <div id="friend-dropdown-icon" className="dropdown-icon" onClick={handleClickFriendDropdown}>
             <div className="friend-dropdown-content-container">
+              <div className="small-text friend-dropdown-content" onClick={handleToAdmin}>Admin</div>
               <div className="small-text friend-dropdown-content" onClick={handleToAccount}>Thông tin tài khoản</div>
               <div className="small-text friend-dropdown-content" onClick={handleToPayment}>Thanh toán</div>
               <div className="small-text friend-dropdown-content" style={{'border':'none'}} onClick={() => dispatch(fetchLogOut(token))}>Đăng xuất</div>

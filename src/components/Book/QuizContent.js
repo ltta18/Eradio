@@ -21,22 +21,28 @@ const QuizContent = (props) => {
     const getQuestion = async() => {
       const book_id = location.pathname.split('/')[3]
       const question = await dispatch(fetchQuestion(book_id, token));
-      question.data.questions.forEach(q => {
-        setCorrectAnswer(prevState => [...prevState, q.correct_answer])
-        setQuestion(prevState => [...prevState, q.question])
-        setPossibleAnswerSet(prevState => [...prevState, q.answers])
-      })
+      if (question) {
+        question.data.questions.forEach(q => {
+          setCorrectAnswer(prevState => [...prevState, q.correct_answer])
+          setQuestion(prevState => [...prevState, q.question])
+          setPossibleAnswerSet(prevState => [...prevState, q.answers])
+        })
+      }
     }
 
     if (location.pathname.split('/')[2] === 'question') getQuestion()
   }, [dispatch, token])
 
   useEffect(() => {
-    localStorage.setItem('answerSet', JSON.stringify(answerSet))
+    if (Object.keys(answerSet).length > 0) {
+      localStorage.setItem('answerSet', JSON.stringify(answerSet))
+    }
   }, [answerSet])
 
   useEffect(() => {
-    localStorage.setItem('correctAnswer', JSON.stringify(correctAnswer))
+    if (correctAnswer.length > 0) {
+      localStorage.setItem('correctAnswer', JSON.stringify(correctAnswer))
+    }
   }, [correctAnswer])
   
   const handleClickAnswer = (e) => {
@@ -91,9 +97,9 @@ const QuizContent = (props) => {
                 <h2>{`Câu hỏi ${i+1}: ${q}`}</h2>
                 {possibleAnswerSet[i].map((answer, j) => {
                   return (
-                  <div key={`question${i}-answer${j}`} id={`question${i}-answer${j}`} className="show-flex" style={{marginBottom: '3px'}} onClick={handleClickAnswer}>
-                    <div id={`question${i}-answer${j}-button`} className={`chapter-status-button not-yet-read-button answer question${i}`}></div>
-                    <div style={{width: '85%', margin: 'auto 0'}}>{answer}</div>
+                  <div key={`question${i}-answer${j}`} id={`question${i}-answer${j}-container`} className="show-flex" style={{marginBottom: '3px'}} onClick={handleClickAnswer}>
+                    <div id={`question${i}-answer${j}-button`} className={`chapter-status-button not-yet-read-button answer question${i}`} style={{marginLeft: '30px', marginTop: '3px'}}></div>
+                    <div id={`question${i}-answer${j}`} className={`possible-answer`}>{answer}</div>
                   </div>)
                 })}
               </div>
