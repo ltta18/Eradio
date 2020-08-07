@@ -29,7 +29,7 @@ export const fetchSearch = (token, name) => async (dispatch) => {
   try {
     const response = await axios({
       method: 'POST',
-      url: 'https://api.eradio.vn/category/search',
+      url: 'https://10.2.50.172/category/search',
       headers: {
         Authorization: `Bearer ${token}`
       },
