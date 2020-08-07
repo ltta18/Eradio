@@ -1,7 +1,7 @@
 {
   "name": "eradio",
   "version": "0.1.0",
-  "private": false,
+  "private": true,
   "homepage": "10.2.50.232",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
