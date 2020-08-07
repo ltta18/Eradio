@@ -50,7 +50,7 @@ const fetchLogOutFailure = (error) => {
 export const fetchSignIn = (email, password) => async (dispatch) => {
   dispatch(fetchSignInRequest())
   try {
-    const response = await axios.post('https://api.eradio.vn/auth/login', {
+    const response = await axios.post('https://10.2.50.172/auth/login', {
       email: email,
       password: password
     })
