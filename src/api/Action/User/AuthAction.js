@@ -70,7 +70,7 @@ export const fetchLogOut = (token) => (dispatch) => {
   try {
     const response = axios({
       method: 'POST',
-      url: 'https://10.2.50.172/auth/logout',
+      url: 'https://10.2.50.172:5000/auth/logout',
       headers: {
         Authorization: `Bearer ${token}`
       },
