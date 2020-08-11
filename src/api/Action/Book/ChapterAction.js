@@ -28,7 +28,7 @@ const fetchChapterRequest = () => {
 export const fetchChapter = (book_id, chapter_id, token) => async (dispatch) => {
   dispatch(fetchChapterRequest())
   try {
-    const response = await axios.get('https://10.2.50.172:5000/book/'+book_id+'/chapter/'+chapter_id, {
+    const response = await axios.get('https://10.2.50.232:1209/book/'+book_id+'/chapter/'+chapter_id, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
