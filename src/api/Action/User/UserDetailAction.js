@@ -29,7 +29,7 @@ const fetchUserDetailRequest = () => {
 export const fetchUserDetail = (token) => async (dispatch) => {
   dispatch(fetchUserDetailRequest())
   try {
-    const response = await axios.get('https://10.2.50.232:1209/auth/detail', {
+    const response = await axios.get('http://10.2.50.232:1209/auth/detail', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
