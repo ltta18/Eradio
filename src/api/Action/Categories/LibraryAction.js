@@ -27,7 +27,7 @@ const fetchLibraryRequest = () => {
 export const fetchLibrary = (token) => async (dispatch) => {
   dispatch(fetchLibraryRequest())
   try {
-    const response = await axios.get('https://10.2.50.172:5000/category/library', {
+    const response = await axios.get('https://10.2.50.232:1209/category/library', {
       headers: {
         Authorization: `Bearer ${token}`,
       },
