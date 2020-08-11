@@ -28,7 +28,7 @@ const fetchSignUpRequest = () => {
 export const fetchSignUp = (email, password) => async (dispatch) => {
   dispatch(fetchSignUpRequest())
   try {
-    const response = await axios.post('https://10.2.50.172:5000/auth/signup', {
+    const response = await axios.post('https://10.2.50.232:1209/auth/signup', {
       email: email,
       password: password
     })
