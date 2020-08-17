@@ -39,6 +39,9 @@ export const fetchSignUp = (email, password) => async (dispatch) => {
     const response = e.response;
     if (response) {
       dispatch(fetchSignUpFailure(response.status));
+      if (response.status === 202) {
+        return 'Email này đã tồn tại!'
+      } 
     }
   }
 };

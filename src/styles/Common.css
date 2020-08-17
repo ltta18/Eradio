@@ -1,6 +1,6 @@
 /* Common Styles */
 .hidden{
-  visibility: hidden;
+  visibility: hidden !important;
 }
 
 .show-none {
