@@ -54,7 +54,7 @@ const Frame = (props) => {
       }
       else {
         let message = await dispatch(fetchSignUp(email, password));
-        console.log(message)
+        setErrors({...errors, email: message})
       }
     }
     else {
