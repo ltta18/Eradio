@@ -83,8 +83,7 @@
   display: table;
   width: 90%;
   height: 100%;
-  padding-top: 65px;
-  border-right: 2px solid rgba(0, 0, 0, 0.1);
+  padding-top: 50px;
 }
 
 .padding-progress-line {
@@ -97,7 +96,7 @@
 #chapter-list-progress-line {
   width: 2px;
   height: 100%;
-  top: 80px;
+  top: 50px;
   margin-left: 20.5px;
   z-index: 2;
   
@@ -119,9 +118,9 @@
   background: url('../img/chapter-icon.svg') no-repeat;
   width: 2rem;
   height: 2rem;
-  margin-left: 1.1rem;
-  margin-right: 0.5rem;
-  margin-top: 65px;
+  margin-left: 0.6rem;
+  margin-right: 0.6rem;
+  margin-top: 50px;
   cursor: pointer;
 }
 
@@ -129,7 +128,7 @@
   background: url('../img/house-icon.svg') no-repeat;
   width: 2rem;
   height: 2rem;
-  margin-left: 1.1rem;
+  margin-left: 0.6rem;
   margin-top: 20px;
   cursor: pointer;
 }

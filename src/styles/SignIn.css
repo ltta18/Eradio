@@ -173,7 +173,7 @@
 /* Ask for sign up */
 .signin-signup-ask {
   display: block !important;
-  margin-top: 10%;
+  margin-top: 5%;
   display: flex;
   align-items: center;
   text-align: center;
