@@ -89,7 +89,7 @@ const routes = [
     name: 'admin-route',
     component: Page,
     path: '/admin',
-    protected: true,
+    protected: false,
   },
 ]
 

@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectAccessToken } from 'api/Reducer/AuthReducer';
+import { fetchUserDetail } from 'api/Action/User/UserDetailAction';
+
 import Header from './Common/Header';
 import ComponentsHeader from './Common/ComponentsHeader';
 import Headline from './Categories/Headline';
@@ -7,9 +11,6 @@ import ListCategories from './Categories/ListCategories';
 import MarketingSales from './Library/MarketingSales';
 import Account from './User/Account';
 import Payment from './User/Payment';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectAccessToken } from 'api/Reducer/AuthReducer';
-import { fetchUserDetail } from 'api/Action/User/UserDetailAction';
 import Admin from './Admin/Admin';
 
 var category = [{'icon':'img/sales.svg', 'name':'Marketing & Sales'}] 
@@ -21,15 +22,15 @@ const Page = () => {
   const token = useSelector(selectAccessToken)
   const [ name, setName ] = useState('')
   
-  useEffect(() => {
-    const getUserDetail = async() => {
-      const user = await dispatch(fetchUserDetail(token))
-      if (user) {
-        setName(user.data.email.split('@')[0])
-      }
-    }
-    getUserDetail()
-  }, [dispatch, token])
+  // useEffect(() => {
+  //   const getUserDetail = async() => {
+  //     const user = await dispatch(fetchUserDetail(token))
+  //     if (user) {
+  //       setName(user.data.email.split('@')[0])
+  //     }
+  //   }
+  //   getUserDetail()
+  // }, [dispatch, token])
 
   const handleClickOutsideSearch = () => {
     var search = document.getElementById('search');

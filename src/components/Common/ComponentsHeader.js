@@ -19,16 +19,18 @@ const ComponentsHeader = (props) => {
     var dropdown_icon = document.getElementsByClassName('dropdown-icon');
     var class_add_to_search;
     var class_rem_from_search;
-    if (search.classList.contains('show-none')) {
+    var search_add;
+    if (search.classList.contains('search-hide')) {
       class_add_to_search = 'show-flex';
       class_rem_from_search = 'show-none';
+      search_add = '';
     }
     else {
       class_add_to_search = 'show-none';
       class_rem_from_search = 'show-flex';
+      search_add = 'search-hide'
     }
-    search.classList.remove(class_rem_from_search);
-    search.classList.add(class_add_to_search);
+    search.setAttribute('class', search_add)
     for (var i=0; i<dropdown_icon.length; i++) {
       if (!dropdown_icon.item(i).classList.contains('hidden')) {
         dropdown_icon.item(i).classList.add(class_rem_from_search);
@@ -104,7 +106,7 @@ const ComponentsHeader = (props) => {
   return (
       <div id="component-header" className="show-flex component-header no-blackout">
         <div className="search-button" onClick={handleSearchClick}></div>
-        <div className="show-none " id="search">
+        <div className="search-hide " id="search">
           <input placeholder="Tìm kiếm sách hoặc tên tác giả" type="text" name="search-bar" id="search-bar" className="grey-18-normal-text" onChange={handleSearch}></input>
           
             {search_result ? 

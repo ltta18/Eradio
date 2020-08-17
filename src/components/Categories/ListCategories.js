@@ -1,7 +1,6 @@
 import React from 'react';
 import Category from './Category';
 
-
 const ListCategories = (props) => {
   return (
     <div className="list-categories-container">

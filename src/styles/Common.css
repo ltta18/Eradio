@@ -1,3 +1,4 @@
+/* Common Styles */
 .hidden{
   visibility: hidden;
 }
@@ -100,3 +101,83 @@
 
   color: #03314B;
 }
+
+/* Page.js */
+#header {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.header-container {
+  margin-left: 5%;
+}
+
+
+/* Header.js */
+@media only screen and (max-width: 650px) {
+  #eradio {
+    display: none !important;
+  }
+
+  #category-banner {
+    display: block !important;
+  }
+}
+
+.header {
+  height: 90px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#eradio-logo {
+  background: url("../img/eradio_logo.svg");
+  width: 50px;
+  height: 50px;
+  margin: auto 0;
+}
+
+#eradio {
+  height: 36px;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 38px;
+  align-items: center;
+  text-align: center;
+  width: 100px;
+  margin: auto 0;
+
+  color: #F58732;
+}
+
+
+
+
+/* ComponentsHeader.js */
+.component-header {
+  width: 100%;
+  justify-content: space-between;
+  margin-right: 5%;
+  height: 90px;
+}
+
+.search-button {
+  border: none;
+  background: url("../img/glass_black.svg") no-repeat;
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+  margin: auto 0 auto 10px;
+  cursor: pointer;
+  }
+
+.search-button:hover {
+  background: url("../img/glass_orange.svg") no-repeat;
+  -o-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+

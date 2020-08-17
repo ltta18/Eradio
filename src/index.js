@@ -1,19 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './api/store';
 
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import './styles/HomePage.css';
+import './styles/Admin.css';
+import './styles/Book.css';
 import './styles/SignIn.css';
 import './styles/Common.css';
 import './styles/Library.css';
 import './styles/User.css';
+import './styles/Categories.css';
+
 import '../node_modules/green-audio-player/dist/css/green-audio-player.min.css'
 import '../node_modules/green-audio-player/dist/js/green-audio-player.js'
-import { PersistGate } from 'redux-persist/integration/react';
 
 ReactDOM.render(
   <Provider store={store}>

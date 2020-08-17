@@ -151,7 +151,8 @@ const BookZoom = (props) => {
           </div>
         </div>
 
-        <div id="filter" className="show-none" onClick={handleClickOutsideChapterList}></div>
+        <div id="filter" className="filter show-none" onClick={handleClickOutsideChapterList}></div>
+        
         <div id="book-zoom-body" className="show-flex" onClick={handleClickOutsideVolume}>
           <div id="book-zoom-menu-bar">
             <div className="chapter-icon" onClick={handleClickChapter}></div>

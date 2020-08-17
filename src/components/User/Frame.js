@@ -20,7 +20,7 @@ const Frame = (props) => {
   const isValid = () => {
     const pathname = location.pathname
     const { errors: newErrors, isValid } = validateInput({email, retypePassword, password}, pathname);
-    setErrors(newErrors);
+    setErrors({...newErrors, isCorrect: true});
     return { errors, isValid};
   }
 
@@ -55,9 +55,7 @@ const Frame = (props) => {
       else await dispatch(fetchSignUp(email, password));
     }
     else {
-      var error = document.getElementById('error');
-      error.classList.add('show-flex');
-      error.classList.remove('show-none');
+      setErrors({...errors, isCorrect: false})
     }
   }
     // if isVerify, want to show message and hide all input bars
@@ -86,26 +84,27 @@ const Frame = (props) => {
             </div>
             
             <form onSubmit={handleSubmit}>
+            <div className={errors.isCorrect ? "show-flex" : "show-none"} style={{position: 'absolute', top: '80px'}}><div className="error-icon"></div><div>Tài khoản/ Mật khẩu sai</div></div>
               <div id="email-container" className={"small-text signin-signup-frame-account " + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Email" 
                       type="text" name="email" id="email" onChange={handleChange}>
                 </input>
               </div>
-              <div id="error" className={errors.email ? "show-flex" : "hidden"}><div className="error-icon"></div><div>{`${errors.email}`}</div></div>
+              <div className={errors.email ? "show-flex" : "hidden"}><div className="error-icon"></div><div>{`${errors.email}`}</div></div>
 
               <div id="password-container" className={"small-text signin-signup-frame-account " + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Mật khẩu" 
                       type="password" name="password" id="password" onChange={handleChange}>
                 </input>
               </div>
-              <div id="error" className={errors.password ? "show-flex" : "hidden"}><div className="error-icon"></div><div>{`${errors.password}`}</div></div>
+              <div className={errors.password ? "show-flex" : "hidden"}><div className="error-icon"></div><div>{`${errors.password}`}</div></div>
 
               <div id="retype-password-container" className={"small-text signin-signup-frame-account " + props.pass_retype + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Nhập lại mật khẩu" 
                        type="password" name="retype_password" id="retype-password" onChange={handleChange}>
                 </input>
               </div>
-              <div id="error" className={errors.retypePassword ? "show-flex" : "hidden" + verify_hide_inputs}><div className="error-icon"></div><div>{`${errors.retypePassword}`}</div></div>
+              <div className={errors.retypePassword ? "show-flex" : "hidden" + verify_hide_inputs}><div className="error-icon"></div><div>{`${errors.retypePassword}`}</div></div>
               
               <div className={"signin-signup-frame-checkbox " + verify_hide_inputs}>
                 <input type="checkbox" id="remember" name="remember" className="checkbox"></input><span className="signin-signup-frame-new-checkbox" onClick={handleClick}></span>
