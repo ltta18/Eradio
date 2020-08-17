@@ -7,7 +7,6 @@ const Admin = () => {
   const [ header, setHeader ] = useState('Quản lý người dùng')
   const [ addButtonMessage, setAddButtonMessage ] = useState('Thêm người dùng')
   const [ tableHeader, setTableHeader ] = useState(accountTableHeader)
-  const [ tableContent, setTableContent ] = useState([])
 
   const userManage = () => {
     const userManage = document.getElementById('user-manage')

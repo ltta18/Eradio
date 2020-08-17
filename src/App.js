@@ -60,7 +60,7 @@ const routes = [
     name: 'book-route',
     component: BookZoom,
     path: '/book/:book_id/chapter/:chapter_id',
-    protected: false,
+    protected: true,
   },
 
   {

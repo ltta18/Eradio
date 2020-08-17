@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import Header from '../Common/Header';
+import history from '../../history';
 import { useDispatch } from 'react-redux';
 import { fetchSignIn } from '../../api/Action/User/AuthAction';
 import { fetchSignUp } from '../../api/Action/User/SignupAction';
 import { validateInput } from '../../utils/input';
 import { useLocation } from 'react-router-dom';
-import history from '../../history';
 
 const Frame = (props) => {
   const [email, setEmail] = useState('');
@@ -20,8 +20,8 @@ const Frame = (props) => {
   const isValid = () => {
     const pathname = location.pathname
     const { errors: newErrors, isValid } = validateInput({email, retypePassword, password}, pathname);
-    setErrors({...newErrors, isCorrect: true});
-    return { errors, isValid};
+    setErrors({...newErrors, isFalse: false});
+    return { errors, isValid };
   }
 
   const handleChange = (e) => {
@@ -54,11 +54,8 @@ const Frame = (props) => {
       }
       else {
         let message = await dispatch(fetchSignUp(email, password));
-        setErrors({...errors, email: message})
+        setErrors({...errors, email: message, isFalse: message ? true : false})
       }
-    }
-    else {
-      setErrors({...errors, isCorrect: false})
     }
   }
     // if isVerify, want to show message and hide all input bars
@@ -87,7 +84,7 @@ const Frame = (props) => {
             </div>
             
             <form onSubmit={handleSubmit}>
-            <div className={errors.isCorrect ? "show-flex" : "show-none"} style={{position: 'absolute', top: '80px'}}><div className="error-icon"></div><span>Tài khoản/ Mật khẩu sai</span></div>
+            <div className={errors.isFalse ? "show-flex" : "show-none"} style={{position: 'absolute', top: '80px'}}><div className="error-icon"></div><span>Tài khoản/ Mật khẩu sai</span></div>
               <div id="email-container" className={"small-text signin-signup-frame-account " + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Email" 
                       type="text" name="email" id="email" onChange={handleChange}>

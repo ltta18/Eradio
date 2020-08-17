@@ -22,15 +22,15 @@ const Page = () => {
   const token = useSelector(selectAccessToken)
   const [ name, setName ] = useState('')
   
-  // useEffect(() => {
-  //   const getUserDetail = async() => {
-  //     const user = await dispatch(fetchUserDetail(token))
-  //     if (user) {
-  //       setName(user.data.email.split('@')[0])
-  //     }
-  //   }
-  //   getUserDetail()
-  // }, [dispatch, token])
+  useEffect(() => {
+    const getUserDetail = async() => {
+      const user = await dispatch(fetchUserDetail(token))
+      if (user) {
+        setName(user.data.email.split('@')[0])
+      }
+    }
+    getUserDetail()
+  }, [dispatch, token])
 
   const handleClickOutsideSearch = () => {
     var search = document.getElementById('search');

@@ -1,7 +1,7 @@
 import React from 'react';
 import Frame from './Frame';
 
-var checkbox_message = ['Tôi đồng ý với', <a href="/signin" class="todo-ask remove-underline"> Các điều khoản dịch vụ</a>]
+var checkbox_message = ['Tôi đồng ý với', <a href="/signin" className="todo-ask remove-underline"> Các điều khoản dịch vụ</a>]
 
 const SignUp = () => {
   return (
