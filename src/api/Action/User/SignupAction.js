@@ -33,15 +33,15 @@ export const fetchSignUp = (email, password) => async (dispatch) => {
       password: password
     })
     dispatch(fetchSignUpSuccess(response));
-    history.push('/verify');
-
+    if (response.status === 202) {
+      return 'Email này đã tồn tại!'
+    } else {
+      history.push('/verify');
+    }
   } catch (e) {
     const response = e.response;
     if (response) {
       dispatch(fetchSignUpFailure(response.status));
-      if (response.status === 202) {
-        return 'Email này đã tồn tại!'
-      } 
     }
   }
 };
