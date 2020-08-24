@@ -50,10 +50,11 @@ const Frame = (props) => {
 
     if (valid) {
       if (location.pathname === '/signin') {
-        await dispatch(fetchSignIn(email, password));
+        const result = await dispatch(fetchSignIn(email, password));
+        setErrors({isFalse: result ? true : false})
       }
       else {
-        let message = await dispatch(fetchSignUp(email, password));
+        const message = await dispatch(fetchSignUp(email, password));
         setErrors({...errors, email: message, isFalse: message ? true : false})
       }
     }
@@ -84,7 +85,7 @@ const Frame = (props) => {
             </div>
             
             <form onSubmit={handleSubmit}>
-            <div className={errors.isFalse && location.pathname === '/signin' ? "show-flex" : "show-none"} style={{position: 'absolute', top: '80px'}}><div className="error-icon"></div><span>Tài khoản/ Mật khẩu sai</span></div>
+              <div className={errors.isFalse && location.pathname === '/signin' ? "show-flex" : "show-none"} style={{position: 'absolute', top: '80px'}}><div className="error-icon"></div><span>Tài khoản/ Mật khẩu sai</span></div>
               <div id="email-container" className={"small-text signin-signup-frame-account " + verify_hide_inputs}>
                 <input className="signin-signup-frame-account-input remove-underline" placeholder="Email" 
                       type="text" name="email" id="email" onChange={handleChange}>

@@ -62,6 +62,7 @@ export const fetchSignIn = (email, password) => async (dispatch) => {
     if (response) {
       dispatch(fetchSignInFailure(response.status));
     }
+    return response.status
   }
 };
 
