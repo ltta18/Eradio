@@ -132,10 +132,10 @@ const BookZoom = (props) => {
   const handleScroll = (e) => {
     var progress_line = document.getElementById('chapter-list-progress-line');
     var scroll_position = document.getElementById('chapter-list-container').scrollTop
-    if (scroll_position >= 80) {
+    if (scroll_position >= 50) {
       progress_line.style.top = '0px';
     } else {
-      progress_line.style.top = '80px';
+      progress_line.style.top = '50px';
     }
   };
   

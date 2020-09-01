@@ -68,7 +68,7 @@
 .error-icon {
   width: 0.7rem;
   height: 0.7rem;
-  background: url('../img/error.svg');
+  background: url('../img/error.svg') no-repeat;
   margin: auto 3px auto 0;
 }
 

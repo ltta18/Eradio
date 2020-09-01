@@ -64,6 +64,7 @@ const ComponentsHeader = (props) => {
     }
     else {
       discovery_dropdown_content.setAttribute('class', 'discovery-dropdown-content-show');
+      discovery_dropdown_content.scrollIntoView();
     }
 
     // close friend dropdown
