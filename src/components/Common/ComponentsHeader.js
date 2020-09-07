@@ -92,9 +92,9 @@ const ComponentsHeader = (props) => {
     }
   }
 
-  const handleToAdmin = () => {
-    history.push('/admin')
-  }
+  // const handleToAdmin = () => {
+  //   history.push('/admin')
+  // }
 
   const handleToAccount = () => {
     history.push('/account')
@@ -135,7 +135,7 @@ const ComponentsHeader = (props) => {
         <div style={{'margin': 'auto 0'}}>
           <div id="friend-dropdown-icon" className="dropdown-icon" onClick={handleClickFriendDropdown}>
             <div className="friend-dropdown-content-container">
-              <div className="small-text friend-dropdown-content" onClick={handleToAdmin}>Admin</div>
+              {/* <div className="small-text friend-dropdown-content" onClick={handleToAdmin}>Admin</div> */}
               <div className="small-text friend-dropdown-content" onClick={handleToAccount}>Thông tin tài khoản</div>
               <div className="small-text friend-dropdown-content" onClick={handleToPayment}>Thanh toán</div>
               <div className="small-text friend-dropdown-content" style={{'border':'none'}} onClick={() => dispatch(fetchLogOut(token))}>Đăng xuất</div>
