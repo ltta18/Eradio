@@ -60,9 +60,11 @@ const Frame = (props) => {
     }
   }
     // if isVerify, want to show message and hide all input bars
-    const verify_message_show = location.pathname === "/verify"?"show-flex":"show-none";
-    const verify_hide_inputs = location.pathname === "/verify"?" show-none":"";
-    const signup_margin_reduced = location.pathname === '/signup'?"margin-reduced ":"";
+    const verify_message_show = location.pathname === "/verify"? "show-flex": "show-none";
+    const verify_hide_inputs = location.pathname === "/verify"? " show-none": "";
+    // const signup_margin_reduced = location.pathname === '/signup'? "margin-reduced ": "";
+    const signup_margin_reduced = "";
+    const checkbox_hide = location.pathname === "/signin" ? "" : "show-none";
 
     const handleGoSignIn = () => {
       history.push('/signin')
@@ -107,7 +109,7 @@ const Frame = (props) => {
               </div>
               <div className={errors.retypePassword ? "show-flex" : "show-flex hidden" + verify_hide_inputs}><div className="error-icon"></div><span>{`${errors.retypePassword}`}</span></div>
               
-              <div className={"signin-signup-frame-checkbox " + verify_hide_inputs}>
+              <div className={"signin-signup-frame-checkbox " + checkbox_hide}>
                 <input type="checkbox" id="remember" name="remember" className="checkbox"></input><span className="signin-signup-frame-new-checkbox" onClick={handleClick}></span>
                 <label htmlFor="remember" className="small-text checkbox-text">{props.checkbox_message}</label>            
               </div>
