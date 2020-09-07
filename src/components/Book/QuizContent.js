@@ -94,7 +94,7 @@ const QuizContent = (props) => {
           question.map((q, i) => {
             return (
               <div key={`question${i}`}>
-                <h2>{`Câu hỏi ${i+1}: ${q}`}</h2>
+                <h3>{`Câu hỏi ${i+1}: ${q}`}</h3>
                 {possibleAnswerSet[i].map((answer, j) => {
                   return (
                   <div key={`question${i}-answer${j}`} id={`question${i}-answer${j}-container`} className="show-flex" style={{marginBottom: '3px'}} onClick={handleClickAnswer}>

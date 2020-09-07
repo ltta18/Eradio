@@ -28,7 +28,10 @@ const BookZoom = (props) => {
   useEffect(() => {
     const getChapter = async () => {
       setIsLoading(true);
-      const chapter = await dispatch(fetchChapter(book_id, chapter_id, token));
+      let chapter;
+      if (chapter_id != undefined) {
+        chapter = await dispatch(fetchChapter(book_id, chapter_id, token));
+      }
       const book = await dispatch(fetchBook(book_id, token));
       if (!!book) {
         setBook(book.data);
@@ -49,11 +52,14 @@ const BookZoom = (props) => {
 
   useEffect (() => {
     const handleNextChapter = () => {
-      if (chapterData.chapter.audio) {
-        var next_chapter_num = String(parseInt(chapter_id)+1);
-        
+      var next = parseInt(chapter_id)+1
+      if (next >= book.directory.length) {
+        handleGetQuiz()
       }
-      history.push(`./${next_chapter_num}`)
+      else {
+        var next_chapter_num = String(next);
+        history.push(`./${next_chapter_num}`)
+      }
     }
 
     if (!isLoading) {
@@ -146,7 +152,7 @@ const BookZoom = (props) => {
       :<div>
         <div id="chapter-list-show" className="chapter-list-hide">
         <div id="chapter-list-container" className="show-flex" onScroll={handleScroll}>
-            <div style={{borderRight: '2px solid rgba(0, 0, 0, 0.1)'}}><div className="chapter-icon" onClick={handleClickChapter}></div></div>
+            <div className="chapter-icon" onClick={handleClickChapter}></div>
             <ChapterBar book={book} chapters={chapterData} handleGetChapter={handleGetChapter} handleGetQuiz={handleGetQuiz} chapterId={chapter_id}/>
           </div>
         </div>

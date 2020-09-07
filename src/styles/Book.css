@@ -81,7 +81,7 @@
 
 #chapter-list {
   display: table;
-  width: 90%;
+  border-left: 2px solid rgba(0, 0, 0, 0.1);
   height: 100%;
   padding-top: 50px;
 }
@@ -172,7 +172,7 @@
   height: auto;
   font-style: normal;
   font-weight: bold;
-  font-size: 3rem;
+  font-size: 1.5rem;
   line-height: 61px;
   padding-top: 40px;
   padding-bottom: 40px;
