@@ -39,42 +39,48 @@ const routes = [
     name: 'page-route',
     component: Page,
     path: '/',
-    protected: true,
+    // protected: true,
+    protected: false,
   },
 
   {
     name: 'question-route',
     component: BookZoom,
     path: '/book/question/:book_id',
-    protected: true,
+    // protected: true,
+    protected: false,
   },
 
   {
     name: 'result-route',
     component: BookZoom,
     path: '/book/result/:book_id',
-    protected: true,
+    // protected: true,
+    protected: false,
   },
 
   {
     name: 'book-route',
     component: BookZoom,
     path: '/book/:book_id/chapter/:chapter_id',
-    protected: true,
+    // protected: true,
+    protected: false,
   },
 
   {
     name: 'list-book-route',
     component: Page,
     path: '/components',
-    protected: true,
+    // protected: true,
+    protected: false,
   },
 
   {
     name: 'account-route',
     component: Page,
     path: '/account',
-    protected: true,
+    // protected: true,
+    protected: false,
   },
 
 
@@ -82,7 +88,8 @@ const routes = [
     name: 'payment-route',
     component: Page,
     path: '/payment',
-    protected: true,
+    // protected: true,
+    protected: false,
   }, 
 
   {
@@ -95,7 +102,8 @@ const routes = [
 
 const App = () => {
   const accessToken = useSelector(selectAccessToken);
-  const defaultRoute = accessToken ? '/' : '/signin';
+  // const defaultRoute = accessToken ? '/' : '/signin';
+  const defaultRoute = '/';
 
   (function(timer) {
     window.addEventListener('load', function() {
@@ -120,7 +128,7 @@ const App = () => {
         {
           routes.map((route) => 
           // XOR
-            !!accessToken === route.protected && 
+            // !!accessToken === route.protected && 
             (<Route key={route.name} exact path={route.path}>
               <route.component/>
             </Route>))

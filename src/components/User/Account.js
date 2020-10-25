@@ -8,7 +8,8 @@ const Account = () => {
   const [ isLoading, setIsLoading ] = useState(true)
   const [ detail, setDetail ] = useState({email: '', type_account: '', registered_on: '', exp: ''})
   const dispatch = useDispatch();
-  const token = useSelector(selectAccessToken)
+  // const token = useSelector(selectAccessToken)
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTI5NzEzOTEsImlhdCI6MTU5Mjk2Nzc4Niwic3ViIjoyfQ.As_b0R0PCQizx2eNuJruMEf5fWqgrx7zClWsx567tac'
 
   useEffect (() => {
     const getUserDetail = async() => {

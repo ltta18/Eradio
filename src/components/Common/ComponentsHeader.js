@@ -12,7 +12,8 @@ const ComponentsHeader = (props) => {
 
   const dispatch = useDispatch();
   const location = useLocation();
-  const token = useSelector(selectAccessToken)
+  // const token = useSelector(selectAccessToken)
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTI5NzEzOTEsImlhdCI6MTU5Mjk2Nzc4Niwic3ViIjoyfQ.As_b0R0PCQizx2eNuJruMEf5fWqgrx7zClWsx567tac'
 
   const handleSearchClick = () => {
     var search = document.getElementById('search');

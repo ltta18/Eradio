@@ -15,22 +15,29 @@ const QuizContent = (props) => {
   
   const location = useLocation()
   const dispatch = useDispatch()
-  const token = useSelector(selectAccessToken)
+  // const token = useSelector(selectAccessToken)
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTI5NzEzOTEsImlhdCI6MTU5Mjk2Nzc4Niwic3ViIjoyfQ.As_b0R0PCQizx2eNuJruMEf5fWqgrx7zClWsx567tac'
 
   useEffect(() => {
     const getQuestion = async() => {
+      mounted = true;
       const book_id = location.pathname.split('/')[3]
-      const question = await dispatch(fetchQuestion(book_id, token));
-      if (question) {
-        question.data.questions.forEach(q => {
-          setCorrectAnswer(prevState => [...prevState, q.correct_answer])
-          setQuestion(prevState => [...prevState, q.question])
-          setPossibleAnswerSet(prevState => [...prevState, q.answers])
-        })
+      if (mounted) {
+        const question = await dispatch(fetchQuestion(book_id, token));
+      
+        if (question) {
+          question.data.questions.forEach(q => {
+            setCorrectAnswer(prevState => [...prevState, q.correct_answer])
+            setQuestion(prevState => [...prevState, q.question])
+            setPossibleAnswerSet(prevState => [...prevState, q.answers])
+          })
+        }
       }
     }
-
+    let mounted;
     if (location.pathname.split('/')[2] === 'question') getQuestion()
+
+    return () => mounted = false;
   }, [dispatch, token])
 
   useEffect(() => {

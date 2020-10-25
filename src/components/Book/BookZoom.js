@@ -19,7 +19,8 @@ const BookZoom = (props) => {
 
   const params = useParams();
   const location = useLocation();
-  const token = useSelector(selectAccessToken)
+  // const token = useSelector(selectAccessToken)
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE1OTI5NzEzOTEsImlhdCI6MTU5Mjk2Nzc4Niwic3ViIjoyfQ.As_b0R0PCQizx2eNuJruMEf5fWqgrx7zClWsx567tac'
   const { book_id, chapter_id } = params;
   const pathname = location.pathname.split('/')[2]
 
@@ -29,7 +30,7 @@ const BookZoom = (props) => {
     const getChapter = async () => {
       setIsLoading(true);
       let chapter;
-      if (chapter_id != undefined) {
+      if (chapter_id !== undefined) {
         chapter = await dispatch(fetchChapter(book_id, chapter_id, token));
       }
       const book = await dispatch(fetchBook(book_id, token));
