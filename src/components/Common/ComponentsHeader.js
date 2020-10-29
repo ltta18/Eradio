@@ -139,7 +139,7 @@ const ComponentsHeader = (props) => {
               {/* <div className="small-text friend-dropdown-content" onClick={handleToAdmin}>Admin</div> */}
               <div className="small-text friend-dropdown-content" onClick={handleToAccount}>Thông tin tài khoản</div>
               <div className="small-text friend-dropdown-content" onClick={handleToPayment}>Thanh toán</div>
-              <div className="small-text friend-dropdown-content" style={{'border':'none'}} onClick={() => dispatch(fetchLogOut(token))}>Đăng xuất</div>
+              {/* <div className="small-text friend-dropdown-content" style={{'border':'none'}} onClick={() => dispatch(fetchLogOut(token))}>Đăng xuất</div> */}
             </div>
           </div>
         </div>
