@@ -20,7 +20,7 @@ const BookZoom = (props) => {
   const params = useParams();
   const location = useLocation();
   // const token = useSelector(selectAccessToken)
-  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDQwNTUwMzYsImlhdCI6MTYwNDA1MTQzMSwic3ViIjoyfQ.oFs49DjykyDmIjvsKAYpxPW9GxxfbnWPcn7CGTepS2Y'
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDk1NzUxMjYsImlhdCI6MTYwNDM4NzUyMSwic3ViIjoyfQ.OOg3c0H-XDQQ7F3lQ9r6HFkB-P2UrrvG20W41EMzdZU'
   const { book_id, chapter_id } = params;
   const pathname = location.pathname.split('/')[2]
 
