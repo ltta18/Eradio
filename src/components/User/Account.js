@@ -9,7 +9,7 @@ const Account = () => {
   const [ detail, setDetail ] = useState({email: '', type_account: '', registered_on: '', exp: ''})
   const dispatch = useDispatch();
   // const token = useSelector(selectAccessToken)
-  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDQwNTUwMzYsImlhdCI6MTYwNDA1MTQzMSwic3ViIjoyfQ.oFs49DjykyDmIjvsKAYpxPW9GxxfbnWPcn7CGTepS2Y'
+  const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJleHAiOjE2MDk1NzUxMjYsImlhdCI6MTYwNDM4NzUyMSwic3ViIjoyfQ.OOg3c0H-XDQQ7F3lQ9r6HFkB-P2UrrvG20W41EMzdZU'
 
   useEffect (() => {
     const getUserDetail = async() => {
