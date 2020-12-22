@@ -7,9 +7,10 @@ const Header = () => {
     }
 
     return (
-        <div className="header no-blackout" onClick={handleGoHome}>
+        <div className="header no-blackout black-gr" onClick={handleGoHome}>
+            {/* <img src={logo} alt="Logo" /> */}
             <div id="eradio-logo"></div>
-            <div id="eradio">Eradio</div>
+            {/* <div id="eradio">Viet Voice</div> */}
         </div> 
     )
 }

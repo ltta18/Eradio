@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  overflow: hidden;
 }
 
 .App-logo {
@@ -12,7 +13,24 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
+.homePageLeft {
+  overflow:hidden;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  object-position: center;
+  overflow: hidden;
+}
+.homePageRight {
+  width: 40%;
+  height: 100%;
 
+}
+.homePage {
+  /* display: flex; */
+  /* flex-direction: row; */
+
+}
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

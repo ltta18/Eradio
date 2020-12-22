@@ -106,7 +106,7 @@ const ComponentsHeader = (props) => {
   }
     
   return (
-      <div id="component-header" className="show-flex component-header no-blackout">
+      <div id="component-header" className="show-flex component-header no-blackout black-gr">
         <div className="search-button" onClick={handleSearchClick}></div>
         <div className="search-hide " id="search">
           <input placeholder="Tìm kiếm sách hoặc tên tác giả" type="text" name="search-bar" id="search-bar" className="grey-18-normal-text" onChange={handleSearch}></input>

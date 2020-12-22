@@ -196,7 +196,7 @@
   background: url(../img/user.svg) no-repeat;
   width: 1.7rem;
   height: 1.7rem;
-  margin: auto 0;
+  margin: auto 50px;
   cursor: pointer;
 }
 

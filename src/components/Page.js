@@ -72,9 +72,15 @@ const Page = () => {
   const isHomePage = () => {
     if (location.pathname === '/') {
       return (
-        <div onClick={handleClickOutsideSearch}>
-          <Headline title="Xin chào, " name={name}/>
-          <ListCategories categories={category}/>
+        <div onClick={handleClickOutsideSearch} className="homePage">
+          <div>
+            
+          </div>
+          <div>
+            <Headline title="Welcome!"/>
+            <ListCategories categories={category}/>
+          </div>
+          
         </div>
       )
     } 
