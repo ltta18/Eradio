@@ -199,6 +199,13 @@
   margin: auto 50px;
   cursor: pointer;
 }
+#friend-dropdown-icon-black {
+  background: url(../img/usercopy.svg) no-repeat;
+  width: 1.7rem;
+  height: 1.7rem;
+  margin: auto 50px;
+  cursor: pointer;
+}
 
 #discovery-dropdown-icon {
   background: url(../img/category.svg) no-repeat;
